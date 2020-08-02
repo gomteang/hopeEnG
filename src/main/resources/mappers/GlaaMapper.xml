@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="GlaaMapper">
+
+    <insert id="Glaa1000_insert" parameterType="org.hope.web.domain.GlaaVO">
+    	INSERT INTO GLTB(GL_NM, GL_CTS, FILE_PATH, SHOWMAIN_YN, REGI_DATE, MODY_DATE)
+    	VALUES(#{glNm}, #{glCts}, SYSDATE(), SYSDATE(), #{filePath})
+		INSERT INTO BORDTB(BORD_NM, BORD_CTS, BORD_STUS, USER_NM, USER_EMAIL, USER_PHONE, USER_PW, REGI_DATE, MODY_DATE)
+		VALUES(#{braaNm}, #{braaCts},#{braaStus},#{userNm},#{userEmail},#{userPhone},#{userPw}, SYSDATE(), SYSDATE())
+    </insert>
+
+
+	 <select id="Glaa1000_select" resultType="org.hope.web.domain.GlaaVO" parameterType="java.util.HashMap">
+	SELECT GL_NO AS glNo
+		,GL_NM AS glNm
+		,GL_CTS AS glCts
+		,REGI_DATE AS regiDate
+		,MODY_DATE AS modyDate
+		,FILE_PATH AS filePath
+	FROM GLTB
+	</select>
+	
+</mapper>
