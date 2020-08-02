@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Agency - Start Bootstrap Theme</title>
+        <title>희망이앤지 - 자동화시스템의 혁신</title>
         <link rel="icon" type="image/x-icon" href="/image/img/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
@@ -128,8 +128,8 @@
 		    </div> -->
         
             <div class="container" style="background:url('../image/img/main/main_bg1.jpg') no-repeat center; height:640px;  background-size:100%; max-width:none;">
-                <div class="masthead-subheading">성장하는 회사</div>
-                <div class="masthead-heading text-uppercase">퇴사를 위한 회사</div>
+                <div class="masthead-subheading">희망이앤지</div>
+                <div class="masthead-heading text-uppercase">시스템의 높은 품질과 안정성을 위한 도약</div>
                 <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="/braa/braa.do">문의하기</a>
             </div>
             <div class="container" style="background:url('../image/img/main/main_bg2.jpg') no-repeat center; height:640px; background-size:100%; max-width:none;">
@@ -205,11 +205,15 @@
                     <div class="col-lg-4 col-sm-6 mb-4">
                         <div class="portfolio-item">
                             <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
+                            <span style="color:white;">바로가기</span>
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
                                 <img class="img-fluid" src="/image/img/portfolio/01-thumbnail.jpg" alt="" />
                             </a>
+                            <!-- <div style="background-color:black;">
+                            <span style="color:#fff;">가나다라</span>
+                            </div> -->
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">자동화 솔루션</div>
                                 <div class="portfolio-caption-subheading text-muted">최고의 기술력</div>

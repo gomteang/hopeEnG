@@ -49,7 +49,7 @@ public class BraaController {
 		@RequestMapping("/Braa1000_select.do")
 		@ResponseBody 
 		public Map<String, List<BraaVO>> BraaSelect(@RequestParam HashMap<String, String> paramMap) {
-			paramMap.forEach((key,value) -> logger.info(key+":"+value));
+			//paramMap.forEach((key,value) -> logger.info(key+":"+value));
 			Map<String, List<BraaVO>> map = new HashMap<String, List<BraaVO>>();
 			List<BraaVO> braaList = braaService.selectBraa(paramMap);
 			map.put("braaList", braaList);

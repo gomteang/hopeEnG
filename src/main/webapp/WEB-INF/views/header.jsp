@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Agency - Start Bootstrap Theme</title>
+        <title>희망이앤지 - 자동화시스템의 혁신</title>
         <link rel="icon" type="image/x-icon" href="/image/img/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
@@ -34,7 +34,7 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ml-auto">
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/">메인으로</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">회사소개</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/Iraa/Iraa.do">회사소개</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">갤러리</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/braa/braa.do">문의 게시판</a></li>
                     </ul>
