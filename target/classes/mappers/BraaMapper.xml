@@ -4,22 +4,46 @@
 <mapper namespace="BraaMapper">
 
     <insert id="Braa1000_insert" parameterType="org.hope.web.domain.BraaVO">
-		INSERT INTO BORDTB(BORD_NM, BORD_CTS, BORD_STUS, USER_NM, USER_EMAIL, USER_PHONE, USER_PW, REGI_DATE, MODY_DATE)
-		VALUES(#{braaNm}, #{braaCts},#{braaStus},#{userNm},#{userEmail},#{userPhone},#{userPw}, SYSDATE(), SYSDATE())
+		INSERT INTO BORDTB(BORD_NM, BORD_CTS, BORD_RELEASE, USER_NM, USER_EMAIL, USER_PHONE, USER_PW, REGI_DATE, MODY_DATE)
+		VALUES(#{bordNm},#{bordCts},#{bordRelease},#{userNm},#{userEmail},#{userPhone},#{userPw}, SYSDATE(), SYSDATE())
     </insert>
 
+    <update id="BraaMapper.Braa1000_update" parameterType="org.hope.web.domain.BraaVO">
+    	UPDATE BORDTB
+    	 <set>
+    		 <if test="bordNm!=null and !bordNm.equals('')"> 
+    		 	BORD_NM = #{bordNm},
+    		 </if>
+    		 <if test="bordCts!=null and !bordCts.equals('')"> 
+    		 	BORD_CTS = #{bordCts},
+    		 </if>
+    		 <if test="userNm!=null and !userNm.equals('')"> 
+    		 	USER_NM = #{userNm},
+    		 </if>
+    		 <if test="userEmail!=null and !userEmail.equals('')"> 
+    		 	USER_EMAIL = #{userEmail},
+    		 </if>
+    		 <if test="userPhone!=null and !userPhone.equals('')"> 
+    		 	USER_PHONE = #{userPhone},
+    		 </if>
+    		 MODY_DATE = SYSDATE()
+    	</set>
+    	WHERE BORD_NO = #{bordNo}
+    </update>
+    
     <select id="Braa1000_select" resultType="org.hope.web.domain.BraaVO" parameterType="java.util.HashMap">
 		SELECT ROW_NUMBER() OVER () AS rowNm
-			  ,BORD_NO AS braaNo
-			  ,BORD_NM AS braaNm
-              ,BORD_STUS AS braaStus
-              ,BORD_CNT AS braaCnt
+			  ,BORD_NO AS bordNo
+			  ,BORD_NM AS bordNm
+              ,BORD_STUS AS bordStus
+              ,BORD_CNT AS bordCnt
+              ,BORD_RELEASE AS bordRelease
               ,USER_NM AS userNm
               ,DATE_FORMAT(MODY_DATE, '%Y-%m-%d') AS modyDate
 		 FROM BORDTB
 		WHERE 1=1 
- 			<if test="braaNm!=null and !braaNm.equals('')">
-			   AND BORD_NM LIKE CONCAT('%',#{braaNm},'%')
+ 			<if test="bordNm!=null and !bordNm.equals('')">
+			   AND BORD_NM LIKE CONCAT('%',#{bordNm},'%')
 			</if>
 			<if test="userNm!=null and !userNm.equals('')">
 		    AND USER_NM LIKE CONCAT('%',#{userNm},'%')
@@ -27,18 +51,20 @@
 		    <!-- <if test="braaStus!=null and !braaStus.equals('')">
 		    AND BORD_STUS = #{braaStus}
 		    </if> -->
+		 ORDER BY REGI_DATE DESC
 	</select>
 	
-	<select id="Braa1000_select_detail" resultType="org.hope.web.domain.BraaVO">
-		SELECT BORD_NO AS braaNo
-			  ,BORD_NM AS braaNm
-              ,BORD_CTS AS braaCts
-              ,BORD_STUS AS braaStus
+	<select id="BraaMapper.Braa1000_selectDetail" resultType="org.hope.web.domain.BraaVO" parameterType="java.lang.String">
+		SELECT BORD_NO AS bordNo
+			  ,BORD_NM AS bordNm
+              ,BORD_CTS AS bordCts
+              ,BORD_STUS AS bordStus
               ,USER_NM AS userNm
               ,USER_EMAIL AS userEmail
               ,USER_PHONE AS userPhone
               ,DATE_FORMAT(REGI_DATE, '%Y-%m-%d') AS regiDate
               ,DATE_FORMAT(MODY_DATE, '%Y-%m-%d') AS modyDate
 		 FROM BORDTB
+	    WHERE BORD_NO = #{bordNum}
 	</select>
 </mapper>

@@ -1,36 +1,48 @@
 package org.hope.web.domain;
 
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
 public class GlaaVO {
-	private int glNo;
-	private String glNm;
-	private String glCts;
+	private int gllyNo;
+	private String gllyNm;
+	private String gllyCts;
+	private String showMainYn;
 	private String regiDate;
 	private String modyDate;
-	private String filePath;
+	private List<MultipartFile> files;
 	
-	public String getFilePath() {
-		return filePath;
+	
+	public List<MultipartFile> getFiles() {
+		return files;
 	}
-	public void setFilePath(String filePath) {
-		this.filePath = filePath;
+	public void setFiles(List<MultipartFile> files) {
+		this.files = files;
 	}
-	public int getGlNo() {
-		return glNo;
+	public int getgllyNo() {
+		return gllyNo;
 	}
-	public void setGlNo(int glNo) {
-		this.glNo = glNo;
+	public void setgllyNo(int gllyNo) {
+		this.gllyNo = gllyNo;
 	}
-	public String getGlNm() {
-		return glNm;
+	public String getgllyNm() {
+		return gllyNm;
 	}
-	public void setGlNm(String glNm) {
-		this.glNm = glNm;
+	public void setgllyNm(String gllyNm) {
+		this.gllyNm = gllyNm;
 	}
-	public String getGlCts() {
-		return glCts;
+	public String getgllyCts() {
+		return gllyCts;
 	}
-	public void setGlCts(String glCts) {
-		this.glCts = glCts;
+	public void setgllyCts(String gllyCts) {
+		this.gllyCts = gllyCts;
+	}
+	public String getShowMainYn() {
+		return showMainYn;
+	}
+	public void setShowMainYn(String showMainYn) {
+		this.showMainYn = showMainYn;
 	}
 	public String getRegiDate() {
 		return regiDate;
@@ -44,9 +56,14 @@ public class GlaaVO {
 	public void setModyDate(String modyDate) {
 		this.modyDate = modyDate;
 	}
-	
+	@Override
+	public String toString() {
+		return "GlaaVO [gllyNo=" + gllyNo + ", gllyNm=" + gllyNm + ", gllyCts=" + gllyCts + ", showMainYn=" + showMainYn
+				+ ", regiDate=" + regiDate + ", modyDate=" + modyDate + ", files=" + files + "]";
+	}
+
+
 
 	
-
 	
 }

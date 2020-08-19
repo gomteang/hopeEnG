@@ -2,17 +2,18 @@ package org.hope.web.domain;
 
 public class BraaVO {
 	private int rowNm;
-	private int braaNo;
-	private String braaNm;
-	private String braaCts;
-	private String braaStus;
-	private int braaCnt;
+	private int bordNo;
+	private String bordNm;
+	private String bordCts;
+	private String bordStus;
+	private int bordCnt;
 	private String userNm;
 	private String userEmail;
 	private String userPhone;
 	private String userPw;
 	private String regiDate;
 	private String modyDate;
+	private String bordRelease;
 	
 	public int getRowNm() {
 		return rowNm;
@@ -20,35 +21,35 @@ public class BraaVO {
 	public void setRowNm(int rowNm) {
 		this.rowNm = rowNm;
 	}
-	public int getBraaNo() {
-		return braaNo;
+	public int getBordNo() {
+		return bordNo;
 	}
-	public void setBraaNo(int braaNo) {
-		this.braaNo = braaNo;
+	public void setBordNo(int bordNo) {
+		this.bordNo = bordNo;
 	}
-	public String getBraaNm() {
-		return braaNm;
+	public String getBordNm() {
+		return bordNm;
 	}
-	public void setBraaNm(String braaNm) {
-		this.braaNm = braaNm;
+	public void setBordNm(String bordNm) {
+		this.bordNm = bordNm;
 	}
-	public String getBraaCts() {
-		return braaCts;
+	public String getBordCts() {
+		return bordCts;
 	}
-	public void setBraaCts(String braaCts) {
-		this.braaCts = braaCts;
+	public void setBordCts(String bordCts) {
+		this.bordCts = bordCts;
 	}
-	public String getBraaStus() {
-		return braaStus;
+	public String getBordStus() {
+		return bordStus;
 	}
-	public void setBraaStus(String braaStus) {
-		this.braaStus = braaStus;
+	public void setBordStus(String bordStus) {
+		this.bordStus = bordStus;
 	}
-	public int getBraaCnt() {
-		return braaCnt;
+	public int getBordCnt() {
+		return bordCnt;
 	}
-	public void setBraaCnt(int braaCnt) {
-		this.braaCnt = braaCnt;
+	public void setBordCnt(int bordCnt) {
+		this.bordCnt = bordCnt;
 	}
 	public String getUserNm() {
 		return userNm;
@@ -85,6 +86,12 @@ public class BraaVO {
 	}
 	public void setModyDate(String modyDate) {
 		this.modyDate = modyDate;
+	}
+	public String getBordRelease() {
+		return bordRelease;
+	}
+	public void setBordRelease(String bordRelease) {
+		this.bordRelease = bordRelease;
 	}
 	
 }

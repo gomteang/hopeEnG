@@ -3,12 +3,44 @@
 
 <mapper namespace="BraaMapper">
 
-    <select id="BRCC0100_mainInsert" parameterType="org.hope.web.domain.BraaVO">
-        <!-- insert into testTable(name) values (#{name}) -->
-        INSERT INTO BRODTB(USER_NM)
-		VALUES (#{name});
-		<!-- INSERT INTO BRODTB(BROD_NM, BROD_CTS, BROD_STUS, USER_NM, USER_EMAIL, USER_PHONE, USER_PW, REGI_DATE, MODY_DATE)
-		VALUES(#{BROD_NM}, #{BROD_CTS},#{BROD_STUS},#{USER_NM},#{USER_EMAIL},#{USER_PHONE},#{USER_PW}, SYSDATE(), SYSDATE()); -->
-    </select>
+    <insert id="Braa1000_insert" parameterType="org.hope.web.domain.BraaVO">
+		INSERT INTO BORDTB(BORD_NM, BORD_CTS, BORD_RELEASE, USER_NM, USER_EMAIL, USER_PHONE, USER_PW, REGI_DATE, MODY_DATE)
+		VALUES(#{bordNm},#{bordCts},#{bordRelease},#{userNm},#{userEmail},#{userPhone},#{userPw}, SYSDATE(), SYSDATE())
+    </insert>
 
+    <select id="Braa1000_select" resultType="org.hope.web.domain.BraaVO" parameterType="java.util.HashMap">
+		SELECT ROW_NUMBER() OVER () AS rowNm
+			  ,BORD_NO AS bordNo
+			  ,BORD_NM AS bordNm
+              ,BORD_STUS AS bordStus
+              ,BORD_CNT AS bordCnt
+              ,BORD_RELEASE AS bordRelease
+              ,USER_NM AS userNm
+              ,DATE_FORMAT(MODY_DATE, '%Y-%m-%d') AS modyDate
+		 FROM BORDTB
+		WHERE 1=1 
+ 			<if test="bordNm!=null and !bordNm.equals('')">
+			   AND BORD_NM LIKE CONCAT('%',#{bordNm},'%')
+			</if>
+			<if test="userNm!=null and !userNm.equals('')">
+		    AND USER_NM LIKE CONCAT('%',#{userNm},'%')
+		    </if>
+		    <!-- <if test="braaStus!=null and !braaStus.equals('')">
+		    AND BORD_STUS = #{braaStus}
+		    </if> -->
+		 ORDER BY REGI_DATE DESC
+	</select>
+	
+	<select id="Braa1000_select_detail" resultType="org.hope.web.domain.BraaVO">
+		SELECT BORD_NO AS braaNo
+			  ,BORD_NM AS braaNm
+              ,BORD_CTS AS braaCts
+              ,BORD_STUS AS braaStus
+              ,USER_NM AS userNm
+              ,USER_EMAIL AS userEmail
+              ,USER_PHONE AS userPhone
+              ,DATE_FORMAT(REGI_DATE, '%Y-%m-%d') AS regiDate
+              ,DATE_FORMAT(MODY_DATE, '%Y-%m-%d') AS modyDate
+		 FROM BORDTB
+	</select>
 </mapper>

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Handles requests for the application home page.
@@ -34,37 +35,55 @@ public class BraaController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	
-		//메인에서 들어오는 화면 
+		//문의 게시판 목록 이동 
 		@RequestMapping(value = "/braa.do", method = RequestMethod.GET)
 		public String home(Locale locale, Model model) {
 
-//			model.addAttribute("pageName", "BraaPage");	  
-//			return "home";
-//			return "BraaPage"; 
-//			return "redirect:/braa/Braa1000_select.do";
 			return "BraaList";
+		} 
+		
+		//문의 게시판 작성하기
+		@RequestMapping(value = "/Braa1000_write.do", method = RequestMethod.GET)
+		public String braaWrite() {
+			logger.info("들어옴");
+			return "BraaPage";
 		} 
 
 		//온라인 문의글 목록 조회
 		@RequestMapping("/Braa1000_select.do")
 		@ResponseBody 
-		public Map<String, List<BraaVO>> BraaSelect(@RequestParam HashMap<String, String> paramMap) {
-			//paramMap.forEach((key,value) -> logger.info(key+":"+value));
+		public Map<String, List<BraaVO>> braaSelect(@RequestParam HashMap<String, String> paramMap) {
+			paramMap.forEach((key,value) -> logger.info(key+":"+value));
+			
 			Map<String, List<BraaVO>> map = new HashMap<String, List<BraaVO>>();
 			List<BraaVO> braaList = braaService.selectBraa(paramMap);
 			map.put("braaList", braaList);
-
+			
 			return map;
+		}
+		
+		//온라인 문의글 상세 조회 
+		@RequestMapping("/Braa1000_detailSelect.do")
+	//	@ResponseBody 
+		public String braaDetailSelect(@RequestParam String bordNum, Model model) {
+			BraaVO braa = braaService.selectDetailBraa(bordNum);
+			model.addAttribute("braa", braa);
+			return "BraaPage";
 		}
 		
 		//온라인 문의글 작성
 		@RequestMapping("/Braa1000_insert.do")
-		@ResponseBody
-		public String BraaInsert(@ModelAttribute BraaVO braaVO, Model model) {
+//		@ResponseBody
+		public String braaInsert(@ModelAttribute BraaVO braaVO, Model model) {
 			braaService.insertBraa(braaVO);
-			//List<BraaVO> braaList = braaService.selectBraa(braaVO);
-			//model.addAttribute("BraaList", braaList);
-			return "BraaList";
+			return "redirect:/braa/braa.do";
+		}
+		
+		//온라인 문의글 작성
+		@RequestMapping("/Braa1000_update.do")
+		public String braaUpdate(@ModelAttribute BraaVO braaVO, Model model) {
+			braaService.updateBraa(braaVO);
+			return "redirect:/braa/braa.do";
 		}
 
 }

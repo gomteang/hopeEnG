@@ -32,11 +32,11 @@
 
     .slider {
         width: 100%;
-        margin: 100px auto;
+        /* margin: 100px auto; */
     }
 
     .slick-slide {
-      margin: 0px 20px;
+      /* margin: 0px 20px; */
     }
 
     .slick-slide img {
@@ -72,6 +72,10 @@
 	        infinite: true,
 	        arrows : true,
 	        slidesToShow : 1,
+	        fade: true,
+	        slidesToScroll: 1,
+	        speed: 1500,
+	        dots: true,
 	        prevArrow : "<button type='button' class='slick-prev'>Previous</button>",		// 이전 화살표 모양 설정
 			nextArrow : "<button type='button' class='slick-next'>Next</button>"		// 다음 화살표 모양 설정
 	       });
@@ -123,35 +127,35 @@
 		      <img data-lazy="http://placehold.it/350x300?text=6-350w"  data-srcset="http://placehold.it/650x300?text=6-650w 650w, http://placehold.it/960x300?text=6-960w 960w">
 		    </div> -->
         
-            <div class="container">
-                <div class="masthead-subheading">Welcome To Our Studio!</div>
-                <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
-                <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">Tell Me More</a>
+            <div class="container" style="background:url('../image/img/main/main_bg1.jpg') no-repeat center; height:640px;  background-size:100%; max-width:none;">
+                <div class="masthead-subheading">성장하는 회사</div>
+                <div class="masthead-heading text-uppercase">퇴사를 위한 회사</div>
+                <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="/braa/braa.do">문의하기</a>
             </div>
-            <div class="container">
-                <div class="masthead-subheading">Welcome To Our Studio!</div>
-                <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
-                <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">Tell Me More</a>
+            <div class="container" style="background:url('../image/img/main/main_bg2.jpg') no-repeat center; height:640px; background-size:100%; max-width:none;">
+                <div class="masthead-subheading">연봉 1억2천만원 !!</div>
+                <div class="masthead-heading text-uppercase">퇴사 하고 싶다</div>
+                <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="/braa/braa.do">문의하기</a>
             </div>
-            <div class="container">
-                <div class="masthead-subheading">Welcome To Our Studio!</div>
-                <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
-                <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">Tell Me More</a>
+            <div class="container" style="background:url('../image/img/main/main_bg3.jpg') no-repeat center; height:640px; background-size:100%; max-width:none;">
+                <div class="masthead-subheading">배우는 회사!</div>
+                <div class="masthead-heading text-uppercase">하루 3시간 근무하는 회사</div>
+                <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="/braa/braa.do">문의하기</a>
             </div>
-            <div class="container">
-                <div class="masthead-subheading">Welcome To Our Studio!</div>
-                <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
-                <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">Tell Me More</a>
+            <div class="container" style="background:url('../image/img/main/main_bg1.jpg') no-repeat center; height:640px; background-size:100%; max-width:none;">
+                <div class="masthead-subheading">배가 고프다!</div>
+                <div class="masthead-heading text-uppercase">소고기 사주는  회사</div>
+                <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="/braa/braa.do">문의하기</a>
             </div>
-            <div class="container">
-                <div class="masthead-subheading">Welcome To Our Studio!</div>
-                <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
-                <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">Tell Me More</a>
+            <div class="container" style="background:url('../image/img/main/main_bg2.jpg') no-repeat center; height:640px; background-size:100%; max-width:none;">
+                <div class="masthead-subheading">집가까운 회사!</div>
+                <div class="masthead-heading text-uppercase">해외여행 가고싶다</div>
+                <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="/braa/braa.do">문의하기</a>
             </div>
-            <div class="container">
-                <div class="masthead-subheading">Welcome To Our Studio!</div>
-                <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
-                <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">Tell Me More</a>
+            <div class="container" style="background:url('../image/img/main/main_bg3.jpg') no-repeat center; height:640px; background-size:100%; max-width:none;">
+                <div class="masthead-subheading">개발자를 위한 회사</div>
+                <div class="masthead-heading text-uppercase">맥북 최신 제공</div>
+                <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="/braa/braa.do">문의하기</a>
             </div>
             </section>
         </header>
@@ -159,8 +163,8 @@
         <section class="page-section" id="services">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Services</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <h2 class="section-heading text-uppercase">회사 소개</h2>
+                    <h3 class="section-subheading text-muted">(주)희망이앤지 회사 소개입니다.</h3>
                 </div>
                 <div class="row text-center">
                     <div class="col-md-4">
@@ -168,24 +172,24 @@
                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
                             <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
                         </span>
-                        <h4 class="my-3">E-Commerce</h4>
-                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                        <h4 class="my-3">정직함</h4>
+                        <p class="text-muted">저희 회사는 정직합니다.</p>
                     </div>
                     <div class="col-md-4">
                         <span class="fa-stack fa-4x">
                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
                             <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
                         </span>
-                        <h4 class="my-3">Responsive Design</h4>
-                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                        <h4 class="my-3">모범</h4>
+                        <p class="text-muted">타의 모범이 됩니다.</p>
                     </div>
                     <div class="col-md-4">
                         <span class="fa-stack fa-4x">
                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
                             <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
                         </span>
-                        <h4 class="my-3">Web Security</h4>
-                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                        <h4 class="my-3">기술력</h4>
+                        <p class="text-muted">세계안전협회가 인정한 기술력</p>
                     </div>
                 </div>
             </div>
@@ -194,8 +198,8 @@
         <section class="page-section bg-light" id="portfolio">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Portfolio</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <h2 class="section-heading text-uppercase">갤러리</h2>
+                    <h3 class="section-subheading text-muted">저희 회사가 작업의 일부 사진입니다.</h3>
                 </div>
                 <div class="row">
                     <div class="col-lg-4 col-sm-6 mb-4">
@@ -207,8 +211,8 @@
                                 <img class="img-fluid" src="/image/img/portfolio/01-thumbnail.jpg" alt="" />
                             </a>
                             <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Threads</div>
-                                <div class="portfolio-caption-subheading text-muted">Illustration</div>
+                                <div class="portfolio-caption-heading">자동화 솔루션</div>
+                                <div class="portfolio-caption-subheading text-muted">최고의 기술력</div>
                             </div>
                         </div>
                     </div>
@@ -221,8 +225,8 @@
                                 <img class="img-fluid" src="/image/img/portfolio/02-thumbnail.jpg" alt="" />
                             </a>
                             <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Explore</div>
-                                <div class="portfolio-caption-subheading text-muted">Graphic Design</div>
+                                <div class="portfolio-caption-heading">전기부품</div>
+                                <div class="portfolio-caption-subheading text-muted">좋은 부품</div>
                             </div>
                         </div>
                     </div>
@@ -235,8 +239,8 @@
                                 <img class="img-fluid" src="/image/img/portfolio/03-thumbnail.jpg" alt="" />
                             </a>
                             <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Finish</div>
-                                <div class="portfolio-caption-subheading text-muted">Identity</div>
+                                <div class="portfolio-caption-heading">관리시스템</div>
+                                <div class="portfolio-caption-subheading text-muted">시스템관리</div>
                             </div>
                         </div>
                     </div>
@@ -249,8 +253,8 @@
                                 <img class="img-fluid" src="/image/img/portfolio/04-thumbnail.jpg" alt="" />
                             </a>
                             <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Lines</div>
-                                <div class="portfolio-caption-subheading text-muted">Branding</div>
+                                <div class="portfolio-caption-heading">모니터링</div>
+                                <div class="portfolio-caption-subheading text-muted">주기적인 모니터링</div>
                             </div>
                         </div>
                     </div>
@@ -263,8 +267,8 @@
                                 <img class="img-fluid" src="/image/img/portfolio/05-thumbnail.jpg" alt="" />
                             </a>
                             <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Southwest</div>
-                                <div class="portfolio-caption-subheading text-muted">Website Design</div>
+                                <div class="portfolio-caption-heading">안전점검</div>
+                                <div class="portfolio-caption-subheading text-muted">안전한 점검</div>
                             </div>
                         </div>
                     </div>
@@ -277,8 +281,8 @@
                                 <img class="img-fluid" src="/image/img/portfolio/06-thumbnail.jpg" alt="" />
                             </a>
                             <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Window</div>
-                                <div class="portfolio-caption-subheading text-muted">Photography</div>
+                                <div class="portfolio-caption-heading">구조설계</div>
+                                <div class="portfolio-caption-subheading text-muted">체계적인 설계</div>
                             </div>
                         </div>
                     </div>
@@ -289,106 +293,62 @@
         <section class="page-section" id="about">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">About</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <h2 class="section-heading text-uppercase">작업단계</h2>
+                    <h3 class="section-subheading text-muted">안전하고 체계적인 단계를 밟습니다.</h3>
                 </div>
                 <ul class="timeline">
                     <li>
                         <div class="timeline-image"><img class="rounded-circle img-fluid" src="/image/img/about/1.jpg" alt="" /></div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
-                                <h4>2009-2011</h4>
-                                <h4 class="subheading">Our Humble Beginnings</h4>
+                                <h4>분석</h4>
+                                <h4 class="subheading">요구사항분석</h4>
                             </div>
-                            <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
+                            <div class="timeline-body"><p class="text-muted">요구사항을 분석 합니다.</p></div>
                         </div>
                     </li>
                     <li class="timeline-inverted">
                         <div class="timeline-image"><img class="rounded-circle img-fluid" src="/image/img/about/2.jpg" alt="" /></div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
-                                <h4>March 2011</h4>
-                                <h4 class="subheading">An Agency is Born</h4>
+                                <h4>설계</h4>
+                                <h4 class="subheading">잘 설계합니다</h4>
                             </div>
-                            <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
+                            <div class="timeline-body"><p class="text-muted">설계 합니다</p></div>
                         </div>
                     </li>
                     <li>
                         <div class="timeline-image"><img class="rounded-circle img-fluid" src="/image/img/about/3.jpg" alt="" /></div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
-                                <h4>December 2012</h4>
-                                <h4 class="subheading">Transition to Full Service</h4>
+                                <h4>체크</h4>
+                                <h4 class="subheading">체크합니다</h4>
                             </div>
-                            <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
+                            <div class="timeline-body"><p class="text-muted">잘 체크합니다</p></div>
                         </div>
                     </li>
                     <li class="timeline-inverted">
                         <div class="timeline-image"><img class="rounded-circle img-fluid" src="/image/img/about/4.jpg" alt="" /></div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
-                                <h4>July 2014</h4>
-                                <h4 class="subheading">Phase Two Expansion</h4>
+                                <h4>구축</h4>
+                                <h4 class="subheading">시스템 구축을 합니다.</h4>
                             </div>
-                            <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
+                            <div class="timeline-body"><p class="text-muted">시스템 구축</p></div>
                         </div>
                     </li>
                     <li class="timeline-inverted">
                         <div class="timeline-image">
                             <h4>
-                                Be Part
+                               	시스템  완료
                                 <br />
-                                Of Our
+                           		    설비
                                 <br />
-                                Story!
+              					   완료
                             </h4>
                         </div>
                     </li>
                 </ul>
-            </div>
-        </section>
-        <!-- Team-->
-        <section class="page-section bg-light" id="team">
-            <div class="container">
-                <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Our Amazing Team</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="/image/img/team/1.jpg" alt="" />
-                            <h4>Kay Garland</h4>
-                            <p class="text-muted">Lead Designer</p>
-                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="/image/img/team/2.jpg" alt="" />
-                            <h4>Larry Parker</h4>
-                            <p class="text-muted">Lead Marketer</p>
-                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="/image/img/team/3.jpg" alt="" />
-                            <h4>Diana Petersen</h4>
-                            <p class="text-muted">Lead Developer</p>
-                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-8 mx-auto text-center"><p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p></div>
-                </div>
             </div>
         </section>
         <!-- Clients-->
@@ -414,32 +374,16 @@
         <section class="page-section" id="contact">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Contact Us</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <h2 class="section-heading text-uppercase">문의하기</h2>
+                    <h3 class="section-subheading text-muted">궁금한 사항을 문의합니다.</h3>
                 </div>
                     <div class="text-center">
                         <div id="success"></div>
-                        <button class="btn btn-primary btn-xl text-uppercase" id="sendMessageButton" type="submit">Send Message</button>
+                        <button class="btn btn-primary btn-xl text-uppercase" id="sendMessageButton" type="submit">문의하기</button>
                     </div>
             </div>
         </section>
-        <!-- Footer-->
-        <footer class="footer py-4">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-4 text-lg-left">Copyright © Your Website 2020</div>
-                    <div class="col-lg-4 my-3 my-lg-0">
-                        <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                    <div class="col-lg-4 text-lg-right">
-                        <a class="mr-3" href="#!">Privacy Policy</a>
-                        <a href="#!">Terms of Use</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
+       
         <!-- Portfolio Modals-->
         <!-- Modal 1-->
         <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
@@ -621,6 +565,9 @@
                 </div>
             </div>
         </div>
+        <%@ include file="/WEB-INF/views/footer.jsp" %>
+        
+        
         <!-- Bootstrap core JS-->
         <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>

@@ -19,49 +19,6 @@
         <link href="${pageContext.request.contextPath}/css/styles.css" rel="stylesheet" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/slick.css">
   		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/slick-theme.css">
-  		<style type="text/css">
-    html, body {
-      margin: 0;
-      padding: 0;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    .slider {
-        width: 100%;
-        margin: 100px auto;
-    }
-
-    .slick-slide {
-      margin: 0px 20px;
-    }
-
-    .slick-slide img {
-      width: 100%;
-    }
-
-    /* .slick-prev:before,
-    .slick-next:before {
-      color: black;
-    } */
-
-
-    .slick-slide {
-      transition: all ease-in-out .3s;
-      opacity: .2;
-    }
-    
-    .slick-active {
-      opacity: .5;
-    }
-
-    .slick-current {
-      opacity: 1;
-    }
-  </style>
-  		
     </head>
     <body id="page-top">
     
@@ -76,15 +33,15 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ml-auto">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">서비스</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">포트폴리오</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">소개</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#team">팀</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/web/braa.do">연락</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/">메인으로</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">회사소개</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">갤러리</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/braa/braa.do">문의 게시판</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
+        
         <!-- Masthead-->
     </body>
 </html>

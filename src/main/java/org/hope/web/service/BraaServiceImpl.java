@@ -1,6 +1,5 @@
 package org.hope.web.service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,6 +28,20 @@ public class BraaServiceImpl implements BraaService{
 	public List<BraaVO> selectBraa(Map<String, String> map) {
 		// TODO Auto-generated method stub
 		return braaDAO.select(map);
+	}
+
+	@Override
+	public BraaVO selectDetailBraa(String bordNum) {
+		// TODO Auto-generated method stub
+		return braaDAO.selectDetail(bordNum);
+	}
+
+	@Override
+	public void updateBraa(BraaVO braaVO) {
+		// TODO Auto-generated method stub
+		int num = braaDAO.update(braaVO);
+		logger.debug("num:"+num);
+		
 	}
 
 }

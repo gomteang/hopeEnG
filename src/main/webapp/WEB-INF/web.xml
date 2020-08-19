@@ -36,7 +36,6 @@
 	</servlet-mapping> -->
 
 
-	<!-- UTF-8 인코딩 -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>
 		<filter-class>
@@ -59,12 +58,12 @@
 	<!-- 에러 페이지 처리 -->
 	<error-page>
 	    <error-code>404</error-code>
-	    <location>/WEB-INF/views/comm/error404.jsp</location>
+	    <location>/WEB-INF/views/comm/error.jsp</location>
 	</error-page>
 	
 	<error-page>
 	    <error-code>500</error-code>
-	    <location>/WEB-INF/views/comm/error500.jsp</location>
+	    <location>/WEB-INF/views/comm/error.jsp</location>
 	</error-page>
 
 

@@ -547,6 +547,9 @@ pre code {
   margin-right: auto;
   margin-left: auto;
 }
+
+
+
 .inner{
   width: 100%;
   padding-right: 0.75rem;
@@ -2674,6 +2677,12 @@ fieldset:disabled a.btn {
 }
 .btn-danger:not(:disabled):not(.disabled):active:focus, .btn-danger:not(:disabled):not(.disabled).active:focus, .show > .btn-danger.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem rgba(225, 83, 97, 0.5);
+}
+
+.mvGraa{
+	color:#fff;
+	background-color:#272e38;
+	border:1px solid #fff;
 }
 
 .btn-light {
@@ -10097,7 +10106,7 @@ img::-moz-selection {
   padding-top: 1rem;
   padding-bottom: 1rem;
   background-color: #212529;
-  position:relative;
+  position:fixed;
 }
 #mainNav .navbar-toggler {
   padding: 0.75rem;
@@ -10144,6 +10153,8 @@ img::-moz-selection {
     height: 2rem;
     transition: height 0.3s ease-in-out;
   }
+  
+  /*
   #mainNav.navbar-shrink {
     padding-top: 1rem;
     padding-bottom: 1rem;
@@ -10156,6 +10167,7 @@ img::-moz-selection {
 #mainNav.navbar-shrink .navbar-brand img {
     height: 1.5rem;
   }
+   */
   #mainNav .navbar-nav .nav-item {
     margin-right: 1rem;
   }
