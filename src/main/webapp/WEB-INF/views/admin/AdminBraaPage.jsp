@@ -14,7 +14,7 @@
 <script>
 var flag = false;
 var pwFlag = false;
-var updMode = false; //수정모드
+var updMode = true; //수정모드
 var num = "${braa.bordNo}";
 
 var originBordStus = "";
@@ -46,13 +46,7 @@ $(document).ready(function(){
 		
 		originBordCts = $("#bordStus").val();
 		
-		if($("#bordRelease").val() == "Y"){ // 공개모드
-			$("input, textarea").prop("readonly", true);
-			$("#braaDelete").css('display','none');
-			//$("#tel").remove(); // 전화번호 제거
-		}else{
-			updMode = true;
-		}
+
 		
 	}else{
 		$("#bordRelease").val("N");

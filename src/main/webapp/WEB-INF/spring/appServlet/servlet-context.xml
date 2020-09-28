@@ -41,7 +41,6 @@
 			<mapping path="/admin/adminBraaPage.do"/>
 			<mapping path="/glaa/uploadForm.do"/>
 			<mapping path="/glaa/Glaa1000_insert.do"/>
-			<mapping path="/glaa/Glaa1000_moveDetailPage.do"/>
 			
 			<beans:ref bean="authInterceptor"/>
 		</interceptor>
