@@ -41,7 +41,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="/"><img src="/image/img/logos/HMeng_icon.png" style="width:60px;height:60px;filter:invert(1)" alt="" />희망이엔지</a>
+                <a class="navbar-brand js-scroll-trigger" href="/"><img src="/image/img/logos/logo_white.png" style="width:60px;height:60px;" alt="" />희망이엔지</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars ml-1"></i>
