@@ -10,7 +10,6 @@
 
 </head>
 <body>
-<H1>갤러리</H1>
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.min.js" type="text/javascript"></script>
 	<%
 		String name;

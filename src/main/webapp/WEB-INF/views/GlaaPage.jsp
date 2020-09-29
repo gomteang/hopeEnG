@@ -196,8 +196,6 @@
 	name = (String)session.getAttribute("name");
 %>
 
-	<div id="wrap">
-		<div id="container">
 			<div class="inner">
 				<h2>게시글 상세</h2>
 				<form id="boardForm" name="boardForm">
@@ -244,7 +242,7 @@
 					<input type="hidden" id="search_type" name="search_type" value="S" />
 					<!-- 조회 타입 - 상세(S)/수정(U) -->
 				</form>
-				<div class="" style="margin-top: 20px; margin-bottom: 20px;">
+				<div class="" style="margin-top: 20px; margin-bottom: 20px;height:60px;">
 					<button type="button" class="" onclick="javascript:goGlaaList();">목록으로</button>
 					<%if(name != null){ %>
 					<button type="button" class="" onclick="javascript:goGlaaUpdate();">수정하기</button>
@@ -252,12 +250,9 @@
 					<%} %>
 				</div>
 			</div>
-		</div>
 		<div>
-
 		<span class="nxt_fix" style="display: none;"></span>
 		</div>
-	</div>
 	
 </body>
 <%@ include file="/WEB-INF/views/comm/footer.jsp"%>
