@@ -3,34 +3,63 @@
 
 <mapper namespace="HomeMapper">
 	<resultMap id="HomeSelectListResult" type="org.hope.web.domain.HomeVO">
-		<id property="gllyNo" column="GL_NO"></id>
-		<result property="gllyNo" column="GL_NO"></result>
-		<result property="comment" column="COMMENT"></result>
-		<result property="subComment" column="SUB_COMMENT"></result>
-		<result property="firstFilePath" column="FIRST_FILE_PATH"></result>
+		<id property="postNo"          column="POST_NO"></id>
+		<result property="postNo"      column="POST_NO"></result>
+		<result property="mainComment" column="MAIN_COMMENT"></result>
+		<result property="subComment"  column="SUB_COMMENT"></result>
+		<result property="fileNo"      column="FILE_NO"></result>
+		<result property="fileSeq"	   column="FILE_SEQ"></result>
+		<result property="filePath"    column="FILE_PATH"></result>
 		<!-- <collection property="HomeFileVO" column="GL_NO" resultMap="HomeFileListResult" ></collection> -->
 	</resultMap>
+	
+	
 	<select id="HomeMapper.Home1000_selectTop" resultMap="HomeSelectListResult">
-		SELECT GL_NO
+		<!-- SELECT GL_NO
 			  ,COMMENT 
 			  ,SUB_COMMENT
               ,FIRST_FILE_PATH
 		 FROM GLTB
 		WHERE 1=1
 		  AND IMG_PSTN ='T'
-	 ORDER BY GL_NO		
+	 ORDER BY GL_NO		 -->
 	    <!-- AND GL_NO=#{gllyNo} -->
+	    SELECT PT.POST_NO
+			 , PT.MAIN_COMMENT 
+			 , PT.SUB_COMMENT
+			 , FT.FILE_NO
+			 , FT.FILE_SEQ
+			 , FT.FILE_PATH 
+		  FROM POSTTB PT
+          LEFT OUTER JOIN FILETB FT
+     		   ON CONCAT(PT.POST_DIST, LPAD(PT.POST_NO ,5,'0')) = FT.FILE_NO
+ 		 WHERE PT.POST_DIST = 'GALL'
+ 		   AND PT.IMG_PSTN = 'T'
+ 		 ORDER BY FILE_NO, FILE_SEQ
 	</select>
+	
 	<select id="HomeMapper.Home1000_selectBottm" resultMap="HomeSelectListResult">
-		SELECT GL_NO
+		<!-- SELECT GL_NO
 			  ,COMMENT
 			  ,SUB_COMMENT
               ,FIRST_FILE_PATH
 		 FROM GLTB
 		WHERE 1=1
 		  AND IMG_PSTN ='B'
-	 ORDER BY GL_NO		
+	 ORDER BY GL_NO		 -->
 	    <!-- AND GL_NO=#{gllyNo} -->
+	    SELECT PT.POST_NO
+			 , PT.MAIN_COMMENT 
+			 , PT.SUB_COMMENT
+			 , FT.FILE_NO
+			 , FT.FILE_SEQ
+			 , FT.FILE_PATH 
+		  FROM POSTTB PT
+          LEFT OUTER JOIN FILETB FT
+     		   ON CONCAT(PT.POST_DIST, LPAD(PT.POST_NO ,5,'0')) = FT.FILE_NO
+ 		 WHERE PT.POST_DIST = 'GALL'
+ 		   AND PT.IMG_PSTN = 'B'
+ 		 ORDER BY FILE_NO, FILE_SEQ
 	</select>
 	 
 </mapper>

@@ -12,7 +12,6 @@
 
 <%    
     String gllyNo = request.getParameter("gllyNo");
-	System.out.println("jsp page : "+ gllyNo);
 %>
 
 <c:set var="gllyNo" value="<%=gllyNo%>" />
@@ -52,7 +51,7 @@
             
             $.ajax({    
                 
-                url        : "/glaa/Glaa1000_getGlaaDetail",
+                url     : "/glaa/Glaa1000_getGlaaDetail",
                 data    : {gllyNo : gllyNo},
               
                 dataType: "JSON",
@@ -133,7 +132,7 @@
 			str += "</tr>";
 			str += "<tr>";
 			str += "<th>메인문구</th>";
-			str += "<td colspan='3'>" + obj.comment + "</td>";
+			str += "<td colspan='3'>" + obj.mainComment + "</td>";
 			str += "</tr>";
 			str += "<tr>";
 			str += "<th>추가문구</th>";

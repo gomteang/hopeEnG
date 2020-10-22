@@ -32,17 +32,16 @@
     
     /** 갤러리 - 상세 조회  */
     function getGlaaDetail(boardSeq){
-        
-        var gllyNo = $("#glly_no").val();
+        alert("start")
+        var gllyNo = <%=gllyNo%>
+        alert(gllyNo)
         if(gllyNo != ""){
             
             $.ajax({    
                 
                 url        : "/glaa/Glaa1000_getGlaaDetail",
                 data    : {gllyNo : gllyNo},
-              
                 dataType: "JSON",
-             
                 cache   : false,
                 async   : true,
                 type    : "POST",    
@@ -59,18 +58,18 @@
     
     /** 게시판 - 상세 조회  콜백 함수 */
     function getGlaaDetailCallback(obj){
-        
+        alert(JSON.stringify(obj))
         var str = "";
         
         if(obj != null){                                
             str += "<tr>";
             str += "<th>이미지</th>";
-            str += "<td>"+ "<img src='/glly/"+obj.firstFilePath+"' width=\"600\"/>" +"</td>";
+            str += "<td>"+ "<img src='/glly/"+obj.filePath+"' width=\"600\"/>" +"</td>";
             str += "</tr>";
-            $("#glly_nm").val(obj.gllyNm);
+            $("#gllyNm").val(obj.gllyNm);
             $("#gllyCts").val(obj.gllyCts);
             $("#imgPstn").val(obj.imgPstn);
-            $("#comment").val(obj.comment);
+            $("#comment").val(obj.mainComment);
             $("#subComment").val(obj.subComment);
         } else {
             
@@ -84,13 +83,13 @@
     // 갤러리 수정
     function updateGlaaDetail(){
     	var obj = new Object();
-    	obj.gllyNm = $("#glly_nm").val();
+    	obj.gllyNm = $("#gllyNm").val();
     	obj.gllyCts = $("#gllyCts").val();
     	obj.imgPstn = $("#imgPstn").val();
     	
     	if(obj.gllyNm == ""){
     		alert("제목을 입력해주세요.");
-    		$("#glly_nm").focus();
+    		$("#gllyNm").focus();
     		return;
     	}
     	if(obj.gllyCts == ""){
@@ -158,7 +157,7 @@
 							</tr>
 							<tr>
 								<th>제목<span class="t_red">*</span></th>
-								<td><input id="glly_nm" name="gllyNm" value=""
+								<td><input id="gllyNm" name="gllyNm" value=""
 									class="form-control" /></td>
 							</tr>
 

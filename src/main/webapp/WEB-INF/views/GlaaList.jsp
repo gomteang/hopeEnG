@@ -43,7 +43,6 @@
 	})
 
 	function gllyDetail(gllyNo){
-
 		location.href="/glaa/Glaa1000_moveDetailPage.do?gllyNo="+gllyNo;
 	}
 
@@ -58,12 +57,11 @@
 		var click = "";
 		
 		$.each(result.glaaList,function(index,item){
-			
-			
-			glaaAppend += "<li class='gallyLi'>"
+			glaaAppend 
+			   		+= "<li class='gallyLi'>"
 					+"<a href='javascript:gllyDetail(\""+item.gllyNo+"\");'>"
 					+"<div class='minidimm'>"
-					+ "<img src=\"<spring:url value='/glly/"+item.firstFilePath+"'/>\"/>"
+					+ "<img src=\"<spring:url value='/glly/"+item.filePath+"'/>\"/>"
 					+"</div>"
 					+"<p class='txtWrap'>"
 					+"<span class='tit'>"+item.gllyNm+"</span>"

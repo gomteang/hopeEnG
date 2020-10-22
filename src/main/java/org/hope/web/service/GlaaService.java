@@ -8,16 +8,16 @@ import org.hope.web.domain.GlaaVO;
 import org.springframework.ui.Model;
 
 public interface GlaaService {
-	public void insertGlaa(GlaaVO glaaVO) throws Exception;
-
-
-	public List<GlaaFileVO> getGlaaFileInfo(GlaaVO glaaVO) throws Exception;
-	public Map<String, Object> selectGlaa(Map<String, Object> map);
 	
+	//갤러리 등록
+	public void insertGlaa(GlaaVO glaaVO) throws Exception;
+	public List<GlaaFileVO> getGlaaFileInfo(GlaaVO glaaVO) throws Exception;
+	
+	//갤러리 조회
+	public Map<String, Object> selectGlaa(Map<String, Object> map);
 	public GlaaVO selectDetailGlaa(String bordNum);
 	
-	public int updateGlaa(GlaaVO glaa);
-
-	
-	public int deleteGlaa(String gllyNo);
+	//갤러리 수정
+	public void updateGlaa(GlaaVO glaa);
+	public void deleteGlaa(String gllyNo);
 }

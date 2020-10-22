@@ -148,7 +148,7 @@ function checkFile(el){
                         </tr>
                         <tr>
                             <th>메인 문구<span class="t_red"></span></th>
-                            <td><textarea class="form-control" id="comment" name="comment" cols="30" rows="10" class="textarea01"></textarea></td>
+                            <td><textarea class="form-control" id="mainComment" name="mainComment" cols="30" rows="10" class="textarea01"></textarea></td>
                         </tr>
                         <tr>
                             <th>추가 문구<span class="t_red"><span></th>

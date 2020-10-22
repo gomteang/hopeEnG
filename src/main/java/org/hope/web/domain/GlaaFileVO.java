@@ -2,7 +2,8 @@ package org.hope.web.domain;
 
 public class GlaaFileVO {
 	private int gllyNo;
-	private int fileNo;
+	private String fileNo;
+	private int fileSeq;
 	private String fileNameKey;
 	private String filePath;
 	private String fileSize;
@@ -12,12 +13,19 @@ public class GlaaFileVO {
 		return "GlaaFileVO [gllyNo=" + gllyNo + ", fileNo=" + fileNo + ", fileNameKey=" + fileNameKey + ", filePath="
 				+ filePath + ", fileSize=" + fileSize + ", regiDate=" + regiDate + "]";
 	}
-	public int getFileNo() {
+	public String getFileNo() {
 		return fileNo;
 	}
-	public void setFileNo(int fileNo) {
+	public void setFileNo(String fileNo) {
 		this.fileNo = fileNo;
 	}
+	public int getFileSeq() {
+		return fileSeq;
+	}
+	public void setFileSeq(int fileSeq) {
+		this.fileSeq = fileSeq;
+	}
+	
 	public String getRegiDate() {
 		return regiDate;
 	}

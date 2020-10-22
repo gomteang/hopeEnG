@@ -115,8 +115,8 @@
     			for(var i in result.HomeTopList){
     				var appendDiv = ""
     				
-    				appendDiv = "<div class='container' style='background:url("+"/glly/"+result.HomeTopList[i].firstFilePath+") no-repeat center; height:640px;  background-size:100%; max-width:none;background-size: cover;'>";
-    				appendDiv += "<div class='masthead-subheading'>"+result.HomeTopList[i].comment+"</div>";
+    				appendDiv = "<div class='container' style='background:url("+"/glly/"+result.HomeTopList[i].filePath+") no-repeat center; height:640px;  background-size:100%; max-width:none;background-size: cover;'>";
+    				appendDiv += "<div class='masthead-subheading'>"+result.HomeTopList[i].mainComment+"</div>";
     				appendDiv += "<div class='masthead-heading text-uppercase'>"+result.HomeTopList[i].subComment+"</div>";
     				appendDiv += "<a class='btn btn-primary btn-xl text-uppercase js-scroll-trigger' href='/braa/braa.do'>문의하기</a>";
     				appendDiv += "</div>";
@@ -144,8 +144,8 @@
     		if(result.HomeBottmList.length >0){
 	    		for(var i=0; i<result.HomeBottmList.length;i++){
 	    			if(i>2) break;
-	    			$("#gally0"+(i+1)).append("<img class='img-main-gallery' src=\'/glly/"+result.HomeBottmList[i].firstFilePath+"'/>");
-	    			$("#gally0"+(i+1)).siblings().children().eq(0).text(result.HomeBottmList[i].comment);
+	    			$("#gally0"+(i+1)).append("<img class='img-main-gallery' src=\'/glly/"+result.HomeBottmList[i].filePath+"'/>");
+	    			$("#gally0"+(i+1)).siblings().children().eq(0).text(result.HomeBottmList[i].mainComment);
     				$("#gally0"+(i+1)).siblings().children().eq(1).text(result.HomeBottmList[i].subComment);
 	    		}
 	    		
@@ -160,12 +160,6 @@
     			$("#gally01").append("<img class='img-main-gallery' src='/image/img/portfolio/02-thumbnail.jpg' alt='' />");
     			$("#gally02").append("<img class='img-main-gallery' src='/image/img/portfolio/03-thumbnail.jpg' alt='' />");
     		}
-    		
-    		
-    		
-    		
-    		
-    		
     		
     		return;
     	}

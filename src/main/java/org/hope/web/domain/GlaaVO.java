@@ -8,15 +8,16 @@ public class GlaaVO {
 	private int gllyNo;
 	private String gllyNm;
 	private String gllyCts;
-	//private String showMainYn;
 	private String imgPstn;
-	private String comment;
+	private String mainComment;
 	private String subComment;
 	private String regiDate;
 	private String modyDate;
 	private List<MultipartFile> files;
 	private List<GlaaFileVO> glaaFileVO;
-	private String firstFilePath;
+	private String fileNo;
+	private int fileSeq;
+	private String filePath;
 	
 	public String getImgPstn() {
 		return imgPstn;
@@ -24,11 +25,11 @@ public class GlaaVO {
 	public void setImgPstn(String imgPstn) {
 		this.imgPstn = imgPstn;
 	}
-	public String getComment() {
-		return comment;
+	public String getMainComment() {
+		return mainComment;
 	}
-	public void setComment(String comment) {
-		this.comment = comment;
+	public void setMainComment(String mainComment) {
+		this.mainComment = mainComment;
 	}
 	public String getSubComment() {
 		return subComment;
@@ -79,20 +80,31 @@ public class GlaaVO {
 	public void setModyDate(String modyDate) {
 		this.modyDate = modyDate;
 	}
-	
-	public String getFirstFilePath() {
-		return firstFilePath;
+	public String getFileNo() {
+		return fileNo;
 	}
-	public void setFirstFilePath(String firstFilePath) {
-		this.firstFilePath = firstFilePath;
+	public void setFileNo(String fileNo) {
+		this.fileNo = fileNo;
 	}
-	@Override
-	public String toString() {
-		return "GlaaVO [gllyNo=" + gllyNo + ", gllyNm=" + gllyNm + ", gllyCts=" + gllyCts + ", imgPstn=" + imgPstn
-				+ ", comment=" + comment + ", subComment=" + subComment + ", regiDate=" + regiDate + ", modyDate="
-				+ modyDate + ", files=" + files + ", glaaFileVO=" + glaaFileVO + ", firstFilePath=" + firstFilePath
-				+ "]";
+	public int getFileSeq() {
+		return fileSeq;
 	}
+	public void setFileSeq(int fileSeq) {
+		this.fileSeq = fileSeq;
+	}
+	public String getFilePath() {
+		return filePath;
+	}
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
+	}
+//	@Override
+//	public String toString() {
+//		return "GlaaVO [gllyNo=" + gllyNo + ", gllyNm=" + gllyNm + ", gllyCts=" + gllyCts + ", imgPstn=" + imgPstn
+//				+ ", comment=" + comment + ", subComment=" + subComment + ", regiDate=" + regiDate + ", modyDate="
+//				+ modyDate + ", files=" + files + ", glaaFileVO=" + glaaFileVO + ", firstFilePath=" + firstFilePath
+//				+ "]";
+//	}
 
 	
 

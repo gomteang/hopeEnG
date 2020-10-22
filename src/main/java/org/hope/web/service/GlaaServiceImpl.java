@@ -27,20 +27,11 @@ public class GlaaServiceImpl implements GlaaService{
 	
 	private static final Logger logger = LoggerFactory.getLogger(GlaaController.class);
 	
-	@Override
-	public void insertGlaa(GlaaVO glaaVO) throws Exception {
 
-	
-		List<GlaaFileVO> glaaFileList = getGlaaFileInfo(glaaVO);
-		glaaVO.setFirstFilePath(glaaFileList.get(0).getFileNameKey());
-		int gllyNo = glaaDAO.insert(glaaVO);
-		for(GlaaFileVO glaaFileVO : glaaFileList) {
-			glaaFileVO.setGllyNo(gllyNo);
-			glaaDAO.insertGlaaFile(glaaFileVO);
-		}
-		
-	}
-
+	////////////////////////////////////////////////////////
+	////               GlaaList 갤러리 메인 조회                              ////
+	////////////////////////////////////////////////////////
+	//갤러리 메인 글 조회
 	@Override
 	public Map<String, Object> selectGlaa(Map<String, Object> map) {
 		int cnt = glaaDAO.selectTotalCnt(map);
@@ -55,26 +46,41 @@ public class GlaaServiceImpl implements GlaaService{
 		return resultMap;
 	}
 
+	//갤러리 메인 첨부 파일 조회
 	@Override
 	public GlaaVO selectDetailGlaa(String gllyNo) {
-
 		GlaaVO detailData = glaaDAO.selectDetail(gllyNo);
-		
 		List<GlaaFileVO> fileData = glaaDAO.selectImagePath(gllyNo);
 		detailData.setGlaaFileVO(fileData);
 		return detailData;
 	}
-
 	
+	
+	////////////////////////////////////////////////////////  
+	////             GlaaUploadForm 갤러리 등록                            ////
+	////////////////////////////////////////////////////////
+	//갤러리 등록
 	@Override
-	public int updateGlaa(GlaaVO glaa) {
+	public void insertGlaa(GlaaVO glaaVO) throws Exception {
 
-		return glaaDAO.updateGlaa(glaa);
+		List<GlaaFileVO> glaaFileList = getGlaaFileInfo(glaaVO);
+		glaaVO.setFilePath(glaaFileList.get(0).getFileNameKey());
+		
+		int gllyNo = glaaDAO.selectGllyNo(glaaVO);
+		glaaVO.setgllyNo(gllyNo);
+		glaaDAO.insert(glaaVO);
+		
+		int i = 1;
+		for(GlaaFileVO glaaFileVO : glaaFileList) {
+			glaaFileVO.setGllyNo(gllyNo);
+			glaaFileVO.setFileSeq(i++);
+			System.out.println(glaaFileVO);
+			glaaDAO.insertGlaaFile(glaaFileVO);
+		}
 		
 	}
-	
-	
-	
+
+	// 첨부 파일 정보 설정
 	@Override
 	public List<GlaaFileVO> getGlaaFileInfo(GlaaVO glaaVO) throws Exception{
 		List<MultipartFile> files = glaaVO.getFiles();
@@ -84,7 +90,7 @@ public class GlaaServiceImpl implements GlaaService{
 		int gllyNo = glaaVO.getgllyNo();
 		String fileName = null;
 		String fileNameKey = null;
-		String rootPath = glaaVO.getFirstFilePath();
+		String rootPath = glaaVO.getFilePath();
 		String filePath = rootPath+"resources/image/gallery";
 		
 		String fileSize = null;
@@ -100,9 +106,9 @@ public class GlaaServiceImpl implements GlaaService{
 				file.mkdirs();
 			}
 			int i=1;
-
+			
 			for(MultipartFile multipartFile : files) {
-	
+				
 				fileName = multipartFile.getOriginalFilename();
 				fileExt = fileName.substring(fileName.lastIndexOf("."));
 				fileNameKey = getRandomString() + fileExt;
@@ -118,15 +124,22 @@ public class GlaaServiceImpl implements GlaaService{
 				glaaFileVO.setFileNameKey(fileNameKey);
 				glaaFileVO.setFilePath(filePath + "/" + fileNameKey);
 				glaaFileVO.setFileSize(fileSize);
-				glaaFileVO.setFileNo(i);i++;
 				glaaFileList.add(glaaFileVO);
-				
-
 			}
 		}
 		return glaaFileList;
 	}
-		
+	
+
+	////////////////////////////////////////////////////////
+	////            GlaaUpdatePage 갤러리 수정 화면                       ////
+	////////////////////////////////////////////////////////
+	@Override
+	public void updateGlaa(GlaaVO glaa) {
+		glaaDAO.updateGlaa(glaa);
+	}
+	
+	
     /** 32글자의 랜덤한 문자열(숫자포함) 생성 */
     public static String getRandomString() {
  
@@ -135,8 +148,8 @@ public class GlaaServiceImpl implements GlaaService{
     
     // 삭제
     @Override
-    public int deleteGlaa(String gllyNo) {
-    	return glaaDAO.deleteGlaa(gllyNo);
+    public void deleteGlaa(String gllyNo) {
+    	glaaDAO.deleteGlaa(gllyNo);
     }
 
 }

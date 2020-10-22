@@ -2,38 +2,27 @@ package org.hope.web.domain;
 
 
 public class HomeVO {
-	private int gllyNo;
-	private String gllyNm;
+	private int postNo;
+	private String postNm;
 	private String imgPstn;
-	private String comment;
+	private String mainComment;
 	private String subComment;
-	private String firstFilePath;
+	private String fileNo;
+	private String fileseq;
+	private String filePath;
 	
-
-	public int getgllyNo() {
-		return gllyNo;
-	}
-	public void setgllyNo(int gllyNo) {
-		this.gllyNo = gllyNo;
-	}
-	public String getgllyNm() {
-		return gllyNm;
-	}
-	public void setgllyNm(String gllyNm) {
-		this.gllyNm = gllyNm;
-	}
 	
-	public String getComment() {
-		return comment;
+	public int getPostNo() {
+		return postNo;
 	}
-	public void setComment(String comment) {
-		this.comment = comment;
+	public void setPostNo(int postNo) {
+		this.postNo = postNo;
 	}
-	public String getSubComment() {
-		return subComment;
+	public String getPostNm() {
+		return postNm;
 	}
-	public void setSubComment(String subComment) {
-		this.subComment = subComment;
+	public void setPostNm(String postNm) {
+		this.postNm = postNm;
 	}
 	public String getImgPstn() {
 		return imgPstn;
@@ -41,11 +30,36 @@ public class HomeVO {
 	public void setImgPstn(String imgPstn) {
 		this.imgPstn = imgPstn;
 	}
-	public String getFirstFilePath() {
-		return firstFilePath;
+	public String getMainComment() {
+		return mainComment;
 	}
-	public void setFirstFilePath(String firstFilePath) {
-		this.firstFilePath = firstFilePath;
+	public void setMainComment(String mainComment) {
+		this.mainComment = mainComment;
+	}
+	public String getSubComment() {
+		return subComment;
+	}
+	public void setSubComment(String subComment) {
+		this.subComment = subComment;
+	}
+	public String getFileNo() {
+		return fileNo;
+	}
+	public void setFileNo(String fileNo) {
+		this.fileNo = fileNo;
+	}
+	public String getFileseq() {
+		return fileseq;
+	}
+	public void setFileseq(String fileseq) {
+		this.fileseq = fileseq;
+	}
+	public String getFilePath() {
+		return filePath;
+	}
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
 	}
 	
+
 }

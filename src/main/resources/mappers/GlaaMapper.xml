@@ -4,123 +4,206 @@
 <mapper namespace="GlaaMapper">
 
 	<resultMap id="glaaSelectListResult" type="org.hope.web.domain.GlaaVO">
-		<id property="gllyNo" column="GL_NO"></id>
-		<result property="gllyNo" column="GL_NO"></result>
-		<result property="gllyNm" column="GL_NM"></result>
-		<result property="gllyCts" column="GL_CTS"></result>
-		<result property="regiDate" column="REGI_DATE"></result>
-		<!-- <result property="showMainYn" column="SHOWMAIN_YN"></result> -->
-		<result property="imgPstn" column="IMG_PSTN"></result>
-		<result property="comment" column="COMMENT"></result>
-		<result property="subComment" column="SUB_COMMENT"></result>
-		<result property="firstFilePath" column="FIRST_FILE_PATH"></result>
+		<id property="gllyNo"            column="GLLY_NO"></id>
+		<result property="gllyNo"        column="GLLY_NO"></result>
+		<result property="gllyNm"        column="GLLY_NM"></result>
+		<result property="gllyCts"       column="GLLY_CTS"></result>
+		<result property="regiDate"      column="REGI_DATE"></result>
+		<result property="modyDate"      column="MODY_DATE"></result>
+		<result property="imgPstn"       column="IMG_PSTN"></result>
+		<result property="mainComment"   column="MAIN_COMMENT"></result>
+		<result property="subComment"    column="SUB_COMMENT"></result>
+		<result property="fileNo"        column="FILE_NO"></result>
+		<result property="fileSeq"		 column="FILE_SEQ"></result>
+		<result property="filePath"      column="FILE_PATH"></result>
 		<!-- <collection property="glaaFileVO" column="GL_NO" resultMap="glaaFileListResult" ></collection> -->
-		<collection property="glaaFileVO" column="GL_NO" javaType="java.util.ArrayList" ofType="org.hope.web.domain.GlaaFileVO" select="GlaaMapper.Glaa1000_selectFileList"/>
-		
+		<collection property="glaaFileVO" column="GLLY_NO" javaType="java.util.ArrayList" ofType="org.hope.web.domain.GlaaFileVO" select="GlaaMapper.Glaa1000_selectFileList"/>
 	</resultMap>
-
+	
 	<resultMap id="glaaFileListResult" type="org.hope.web.domain.GlaaFileVO">
-		<result property="gllyNo" column="GL_NO"></result>
-		<result property="fileNo" column="FILE_NO"></result>
+		<result property="gllyNo"      column="GLLY_NO"></result>
+		<result property="fileNo"      column="FILE_NO"></result>
+		<result property="fileSeq"	   column="FILE_SEQ"></result>
+		<result property="filePath"    column="FILE_PATH"></result>
+		<result property="fileSize"    column="FILE_SIZE"></result>
+		<result property="regiDate"    column="REGI_DATE"></result>
 		<result property="fileNameKey" column="FILE_NM_KEY"></result>
 	</resultMap>
 	
+	
+	
+	
+	<!--////////////////////////////////////////////////////////  
+	////                GlaaList 갤러리 메인화면                                    ////
+	////////////////////////////////////////////////////////-->
+	<!-- 갤러리 등록 총 수 -->	
+	<select id="GlaaMapper.Glaa1000_totalCnt" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+		SELECT COUNT(*) AS cnt
+		  FROM POSTTB
+		 WHERE 1=1
+		<if test="gllyNm!=null and !gllyNm.equals('')">
+		   AND POST_NM LIKE CONCAT('%',#{gllyNm},'%')
+		</if>
+	</select>
+	
+	<!-- 갤러리 리스트 조회 -->
 	<select id="GlaaMapper.Glaa1000_select" resultMap="glaaSelectListResult">
-		select *
-		from
-		(SELECT GL_NO
-			  ,GL_NM
-              ,GL_CTS
-              ,IMG_PSTN
-              ,COMMENT
-              ,SUB_COMMENT
-              ,DATE_FORMAT(REGI_DATE, '%Y-%m-%d') as REGI_DATE
-              ,DATE_FORMAT(MODY_DATE, '%Y-%m-%d') as MODY_DATE
-              ,MODY_DATE as SORT_MODY_DATE		
-              ,FIRST_FILE_PATH
-		FROM GLTB
-		WHERE 1=1
-		<if test="glNm!=null and !glNm.equals('')">
-		AND GL_NM LIKE CONCAT('%',#{glNm},'%')
-	    </if>
-	    <if test="glCts!=null and !glCts.equals('')">
-		AND GL_CTS LIKE CONCAT('%',#{glCts},'%')
-	    </if>
-	    ORDER BY SORT_MODY_DATE DESC
-	    ) T1
+		SELECT *
+		  FROM
+	   (SELECT PT.POST_NO  AS GLLY_NO
+	   		 , PT.POST_NM   AS GLLY_NM
+	   		 , PT.POST_CTS  AS GLLY_CTS
+	   		 , PT.IMG_PSTN 
+	   		 , PT.MAIN_COMMENT 
+	   		 , PT.SUB_COMMENT 
+	   		 , DATE_FORMAT(PT.REGI_DATE, '%Y-%m-%d' ) AS REGI_DATE 
+	   		 , DATE_FORMAT(PT.MODY_DATE, '%Y-%m-%d') as MODY_DATE
+	   		 , PT.MODY_DATE AS SORT_MODY_DATE
+	   		 , FT.FILE_NO 
+	   		 , FT.FILE_SEQ 
+	   		 , FT.FILE_PATH 
+	      FROM POSTTB PT
+	      LEFT OUTER JOIN FILETB FT
+	        ON CONCAT(PT.POST_DIST, LPAD(PT.POST_NO ,5,'0')) = FT.FILE_NO
+	     WHERE 1=1
+	       AND PT.POST_DIST = 'GLLY'
+	       AND FT.FILE_SEQ  = '1'
+		 <if test="gllyNm!=null and !gllyNm.equals('')">
+		   AND PT.POST_NM LIKE CONCAT('%',#{gllyNm},'%')
+		 </if>
+		   <if test="gllyCts!=null and !gllyCts.equals('')">
+		   AND PT.POST_CTS LIKE CONCAT('%',#{gllyCts},'%')
+		   </if>
+		   ORDER BY SORT_MODY_DATE DESC
+		   ) T1
 	    ORDER BY SORT_MODY_DATE DESC
 	    LIMIT #{start},${cntPerPage}
 	</select>
 	
+	<!-- 갤러리 메인화면 첨부파일 조회 -->
 	<select id="GlaaMapper.Glaa1000_selectFileList" resultMap="glaaFileListResult" >
-		SELECT 
-			   GL_NO,
-			   FILE_NO,
-			   FILE_NM_KEY
-		FROM FILETB
-		WHERE GL_NO=#{gllyNo}
+		SELECT PT.POST_NO AS GLLY_NO
+			 , FT.FILE_NO
+			 , FT.FILE_SEQ  
+			 , FT.FILE_NM_KEY
+			 , FT.FILE_PATH
+			 , FT.FILE_SIZE
+			 , FT.REGI_DATE
+		  FROM POSTTB PT
+		     , FILETB FT
+		WHERE PT.POST_NO = #{gllyNo}
+		  AND FT.FILE_NO = CONCAT('GLLY',LPAD(PT.POST_NO,5,'0'))
+		  <!-- AND FT.FILE_SEQ = 1 -->
 	</select>
 	
-    <insert id="Glaa1000_insert" parameterType="org.hope.web.domain.GlaaVO">
-  
-		INSERT INTO GLTB(GL_NM, GL_CTS, REGI_DATE, MODY_DATE, IMG_PSTN, COMMENT, SUB_COMMENT, FIRST_FILE_PATH)
-		VALUES(#{gllyNm},#{gllyCts}, SYSDATE(), SYSDATE(), #{imgPstn}, #{comment}, #{subComment},#{firstFilePath})
 	
-		<selectKey resultType="Integer" keyProperty="gllyNo" order="AFTER">
-    		SELECT LAST_INSERT_ID() as gllyNo
-    	</selectKey>
+	<!--////////////////////////////////////////////////////////  
+	////             GlaaUploadForm 갤러리 등록                                    ////
+	////////////////////////////////////////////////////////-->
+	<!-- Glly No 조회 -->
+	<select id="Glaa1000_selectGllyNo" parameterType="org.hope.web.domain.GlaaVO" resultType="Integer">
+		SELECT NVL(MAX(POST_NO),0) + 1 AS GLLY_NO
+		  FROM POSTTB
+		 WHERE POST_DIST = 'GLLY'
+	</select>
+	
+	<!-- 갤러리 글 등록 -->
+    <insert id="Glaa1000_insert" parameterType="org.hope.web.domain.GlaaVO">
+  		INSERT INTO POSTTB
+  		     ( POST_DIST
+  		     , POST_NO
+  		     , POST_NM
+  		     , POST_CTS
+  		     , IMG_PSTN
+  		     , MAIN_COMMENT
+  		     , SUB_COMMENT
+  		     , REGI_DATE
+  		     , MODY_DATE)
+  		VALUES
+  		     ( 'GLLY'
+  		     , #{gllyNo}
+  		     , #{gllyNm}
+  		     , #{gllyCts}
+  		     , #{imgPstn}
+  		     , #{mainComment}
+  		     , #{subComment}
+  		     , SYSDATE()
+  		     , SYSDATE()
+  		     )
     </insert>
     
+    <!-- 갤러리 업로드 파일등록 -->
     <insert id="Glaa1000_insertFile" parameterType="org.hope.web.domain.GlaaFileVO">
-    	INSERT INTO FILETB(GL_NO, FILE_NO,FILE_NM_KEY, FILE_PATH, FILE_SIZE, REGI_DATE)
-    	VALUES(#{gllyNo},#{fileNo},#{fileNameKey},#{filePath},#{fileSize},SYSDATE())
+		INSERT INTO FILETB
+		     ( FILE_NO
+		     , FILE_SEQ
+		     , FILE_NM_KEY
+		     , FILE_PATH
+		     , FILE_SIZE
+		     , REGI_DATE)
+        VALUES
+             ( CONCAT('GLLY',LPAD(#{gllyNo},5,'0'))
+             , #{fileSeq}
+             , #{fileNameKey}
+             , #{filePath}
+             , #{fileSize}
+             , SYSDATE())
     </insert>
-	
-	<select id="GlaaMapper.Glaa1000_selectDetail" resultType="org.hope.web.domain.GlaaVO" parameterType="java.lang.String">
-		SELECT GL_NO AS gllyNo
-			  ,GL_NM AS gllyNm
-              ,GL_CTS AS gllyCts
-              ,FIRST_FILE_PATH as firstFilePath
-              ,IMG_PSTN as imgPstn
-              ,COMMENT as comment
-              ,SUB_COMMENT as subComment
-              ,DATE_FORMAT(REGI_DATE, '%Y-%m-%d') AS regiDate
-              ,DATE_FORMAT(MODY_DATE, '%Y-%m-%d') AS modyDate
-		 FROM GLTB
-	    WHERE GL_NO = #{gllyNo}
+    
+    
+    
+    <!--////////////////////////////////////////////////////////  
+	////                 GlaaPage 갤러리 상세                                       ////
+	////////////////////////////////////////////////////////-->
+	<!-- 갤러리 상세 조회 -->
+	<select id="GlaaMapper.Glaa1000_selectDetail" resultMap="glaaSelectListResult">
+		SELECT PT.POST_NO  AS GLLY_NO
+	   		 , PT.POST_NM   AS GLLY_NM
+	   		 , PT.POST_CTS  AS GLLY_CTS
+	   		 , PT.IMG_PSTN 
+	   		 , PT.MAIN_COMMENT 
+	   		 , PT.SUB_COMMENT 
+	   		 , DATE_FORMAT(PT.REGI_DATE, '%Y-%m-%d' ) AS REGI_DATE 
+	   		 , DATE_FORMAT(PT.MODY_DATE, '%Y-%m-%d') as MODY_DATE
+	   		 , PT.MODY_DATE AS SORT_MODY_DATE
+	   		 , FT.FILE_NO 
+	   		 , FT.FILE_SEQ 
+	   		 , FT.FILE_PATH 
+	      FROM POSTTB PT
+	      LEFT OUTER JOIN FILETB FT
+	        ON CONCAT(PT.POST_DIST, LPAD(PT.POST_NO ,5,'0')) = FT.FILE_NO
+	     WHERE 1=1
+	       AND PT.POST_DIST = 'GLLY'
+	       AND PT.POST_NO = #{gllyNo}
+		   AND FT.FILE_SEQ = 1
 	</select>
-	
-	
-	<select id="GlaaMapper.Glaa1000_totalCnt" parameterType="java.util.HashMap" resultType="java.lang.Integer">
-	SELECT COUNT(*) AS cnt
-	FROM GLTB
-	WHERE 1=1
-	<if test="gllyNm!=null and !gllyNm.equals('')">
-		AND GL_NM LIKE CONCAT('%',#{gllyNo},'%')
-	</if>
-	
-	</select>
-	
-	
 
     
-    
+    <!--////////////////////////////////////////////////////////  
+	////               GlaaUpdatePage 갤러리 상세                               ////
+	////////////////////////////////////////////////////////-->
+	<!-- 갤러리 글 수정 -->
     <update id="GlaaMapper.Glaa1000_update" parameterType="org.hope.web.domain.GlaaVO">
-    	UPDATE GLTB
-    		SET GL_NM = #{gllyNm}
-    		,	GL_CTS = #{gllyCts}
-    		, 	MODY_DATE = SYSDATE()
-              ,IMG_PSTN =#{imgPstn}
-              ,COMMENT =#{comment}
-              ,SUB_COMMENT=#{subComment}
-    		WHERE GL_NO = #{gllyNo}
+    	UPDATE POSTTB
+    	   SET POST_NM      = #{gllyNm}
+    		 , POST_CTS     = #{gllyCts}
+    		 , MODY_DATE    = SYSDATE()
+             , IMG_PSTN     = #{imgPstn}
+             , MAIN_COMMENT = #{mainComment}
+             , SUB_COMMENT  = #{subComment}
+    		WHERE POST_NO   = #{gllyNo}
     </update>
 
-
+	<!-- 갤러리 글 삭제 -->
 	<delete id="GlaaMapper.Glaa1000_delete" parameterType="java.lang.String" >
-		DELETE
-		FROM GLTB
-		WHERE GL_NO=#{gllyNo}
-		
+		DELETE FROM POSTTB
+		 WHERE POST_NO = #{gllyNo}
 	</delete>
+	
+	<!-- 갤러리 파일 삭제 -->
+	<delete id="GlaaMapper.Glaa1000_delete_file" parameterType="java.lang.String">
+		DELETE FROM FILETB
+		 WHERE FILE_NO = CONCAT('GLLY',LPAD(#{gllyNo},5,'0'))
+	</delete>
+	
 </mapper>
