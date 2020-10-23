@@ -34,47 +34,46 @@ public class BraaController {
 
 	private static final Logger logger = LoggerFactory.getLogger(BraaController.class);
 
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
 	
+		////////////////////////////////////////////////////////
+		////              BraaList 문의 게시판 메인화면                          ////
+		////////////////////////////////////////////////////////
 		//문의 게시판 목록 이동 
 		@RequestMapping(value = "/braa.do", method = RequestMethod.GET)
 		public String home(Locale locale, Model model) {
-
 			return "BraaList";
 		} 
-		
-		//문의 게시판 작성하기
-		@RequestMapping(value = "/Braa1000_write.do", method = RequestMethod.GET)
-		public String braaWrite() {
-			logger.info("들어옴");
-			return "BraaPage";
-		} 
-		
-		@RequestMapping(value = "Braa1000_confirmPasswdWindow.do", method = RequestMethod.GET)
-		public String braaConfirmPasswdWindow(@RequestParam String bordNum, Model model) {
-			model.addAttribute("bordNum", bordNum);
-			return "BraaConfirmPassWd";
-		}
-		
-		@RequestMapping("Braa1000_confirmPasswd.do")
-		@ResponseBody
-		public Boolean braaConfirmPasswd(@RequestBody HashMap<String, String> data) throws Exception {
-			return braaService.confirmPasswd(data);
-		}
-
 		//온라인 문의글 목록 조회
 		@RequestMapping("/Braa1000_select.do")
 		@ResponseBody 
 		public Map<String, Object> braaSelect(@RequestParam HashMap<String, Object> paramMap) {	
-			//paramMap.forEach((key,value) -> logger.info(key+":"+value));
 			Map<String, Object> map = braaService.selectBraa(paramMap);
-
 			return map;
 		}
 		
-		//온라인 문의글 상세 조회 
+		//온라인 문의글 관리자 페이지 호출
+		@RequestMapping(value = "Braa1000_adminPageCall.do", method = RequestMethod.GET)
+		public String braaAdminPageCall(@RequestParam String bordNum, Model model) {
+			return "redirect:/admin/adminBraaPage.do?bordNum="+bordNum;
+		}
+		
+		
+		////////////////////////////////////////////////////////
+		////    BraaPage 문의 게시판 상세화면(조회, 작성, 수정, 삭제)   ////
+		////////////////////////////////////////////////////////
+		//문의 게시판 상세화면 (작성 모드)
+		@RequestMapping(value = "/Braa1000_write.do", method = RequestMethod.GET)
+		public String braaWrite() {
+			return "BraaPage";
+		} 
+		//온라인 문의글 작성
+		@RequestMapping("/Braa1000_insert.do")
+		public String braaInsert(@ModelAttribute BraaVO braaVO, Model model) throws Exception {
+			braaService.insertBraa(braaVO);
+			return "redirect:/braa/braa.do";
+		}
+				
+		//문의 게시판 상세화면 (조회 모드)
 		@RequestMapping("/Braa1000_detailSelect.do")
 		public String braaDetailSelect(@RequestParam HashMap<String, String> paramMap, HttpSession session, Model model) {
 			String updMode = paramMap.get("updMode");
@@ -83,7 +82,6 @@ public class BraaController {
 			model.addAttribute("braa", braa);
 			return "BraaPage";
 		}
-		
 		//온라인 문의글 상세 조회 (이메일, 연락처)
 		@RequestMapping("/Braa1000_detailSelectUpd.do")
 		@ResponseBody
@@ -93,20 +91,9 @@ public class BraaController {
 			return braa;
 		}
 		
-		//컨트롤러에서 익셉션 잡아주기
-		//온라인 문의글 작성
-		@RequestMapping("/Braa1000_insert.do")
-//		@ResponseBody
-		//public String braaInsert(@ModelAttribute BraaVO braaVO, Model model) {
-		public String braaInsert(@ModelAttribute BraaVO braaVO, Model model) throws Exception {
-			braaService.insertBraa(braaVO);
-			return "redirect:/braa/braa.do";
-		}
-		
-		//온라인 문의글 작성
+		//온라인 문의글 수정
 		@RequestMapping("/Braa1000_update.do")
 		public String braaUpdate(@ModelAttribute BraaVO braaVO, Model model) {
-			//System.out.println("BraaVO : " + braaVO);
 			braaService.updateBraa(braaVO);
 			return "redirect:/braa/braa.do";
 		}
@@ -118,10 +105,26 @@ public class BraaController {
 			return "redirect:/braa/braa.do";
 		}
 		
-		//온라인 문의글 관리자 페이지 호출
-		@RequestMapping(value = "Braa1000_adminPageCall.do", method = RequestMethod.GET)
-		public String braaAdminPageCall(@RequestParam String bordNum, Model model) {
-			return "redirect:/admin/adminBraaPage.do?bordNum="+bordNum;
+		
+		////////////////////////////////////////////////////////
+		////       BraaConfirmPassWd 문의글 조회 비밀번호 팝업                 /// 
+		////////////////////////////////////////////////////////
+		//온라인 문의글 비밀번호 입력 팝업
+		@RequestMapping(value = "Braa1000_confirmPasswdWindow.do", method = RequestMethod.GET)
+		public String braaConfirmPasswdWindow(@RequestParam String bordNum, Model model) {
+			model.addAttribute("bordNum", bordNum);
+			return "BraaConfirmPassWd";
 		}
+		//온라인 문의글 비밀번호 체크
+		@RequestMapping("Braa1000_confirmPasswd.do")
+		@ResponseBody
+		public Boolean braaConfirmPasswd(@RequestBody HashMap<String, String> data) throws Exception {
+			return braaService.confirmPasswd(data);
+		}
+		
+		
+		
+		
+		
 
 }

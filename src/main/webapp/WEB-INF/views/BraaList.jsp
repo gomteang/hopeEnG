@@ -163,9 +163,7 @@
 
 	</div>
 	<div style="height:80px;">
-		<%if(name == null) {%>
 		<button id="write" style="float:right;">작성하기</button>
-		<%} %>
 	</div>
 	<div class="clear-space"></div>
 </div>

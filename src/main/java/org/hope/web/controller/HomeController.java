@@ -35,33 +35,26 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	
-	  @RequestMapping(value = "/", method = RequestMethod.GET) public String
-	  home(Locale locale, Model model) {
-	  logger.info("Welcome home! The client locale is {}.", locale);
-	  
-	  Date date = new Date(); DateFormat dateFormat =
-	  DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-	  
-	  String formattedDate = dateFormat.format(date);
-	  
-	  model.addAttribute("serverTime", formattedDate );
-	  
-	  return "home";
+	  @RequestMapping(value = "/", method = RequestMethod.GET) 
+	  public String home(Locale locale, Model model) {
+		  logger.info("Welcome home! The client locale is {}.", locale);
+		  
+		  Date date = new Date(); DateFormat dateFormat =
+		  DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		  
+		  String formattedDate = dateFormat.format(date);
+		  
+		  model.addAttribute("serverTime", formattedDate );
+		  
+		  return "home";
 	  }
 	  
 	  @RequestMapping("/Home1000_select.do")
 	  @ResponseBody 
 	  public Map<String, List<HomeVO>> HomeSelectFile(@RequestParam HashMap<String, String> paramMap) throws Exception {
-		
-		  
 		  Map<String, List<HomeVO>> map = new HashMap<String, List<HomeVO>>();
-		  
 		  List<HomeVO> HomeTopList = homeService.selectHomeTop(paramMap);
 		  List<HomeVO> HomeBottmList = homeService.selectHomeBottm(paramMap);
-		  /*
-		   * System.out.println("첫번째파일경로");
-		   * System.out.println(glaaList.get(0).getFirstFilePath());
-		   */
 		
 		  map.put("HomeTopList",HomeTopList); 
 		  map.put("HomeBottmList",HomeBottmList);

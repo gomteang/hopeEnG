@@ -23,16 +23,12 @@ public class BraaServiceImpl implements BraaService{
 	
 	private static final Logger logger = LoggerFactory.getLogger(BraaController.class);
 	
-	@Override
-	public void insertBraa(BraaVO braaVO) throws Exception {
-		// TODO Auto-generated method stub
-		braaVO.setUserPw(sha256(braaVO.getUserPw())); //sha256 공통으로 빼면 애 controller로 빼기
-		braaDAO.insert(braaVO);
-	}
-
+	////////////////////////////////////////////////////////
+	////             BraaList 문의 게시판 메인화면                            ////
+	////////////////////////////////////////////////////////
+	//온라인 문의글 목록 조회 및 총 게시글 조회
 	@Override
 	public Map<String, Object> selectBraa(Map<String, Object> map) {
-		// TODO Auto-generated method stub
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		int cnt = braaDAO.selectTotalCnt(map);
 		//페이징 처리
@@ -44,34 +40,51 @@ public class BraaServiceImpl implements BraaService{
 		return resultMap;
 	}
 
+	
+	////////////////////////////////////////////////////////
+	////    BraaPage 문의 게시판 상세화면(조회, 작성, 수정, 삭제)   ////
+	////////////////////////////////////////////////////////
+	//온라인 문의글 상세 조회 
 	@Override
 	public BraaVO selectDetailBraa(String bordNum) {
-		// TODO Auto-generated method stub
 		int num = increViewsBraa(bordNum);
-		logger.debug("num:"+num);
 		return braaDAO.selectDetail(bordNum);
 	}
-	
+	//온라인 문의글 조횟수 증가  ??????????????????왜 굳이 분리
 	@Override
 	public int increViewsBraa(String bordNum) {
-		// TODO Auto-generated method stub
 		return braaDAO.updateIncreViewsBraa(bordNum);
 	}
 	
+	//온라인 문의글 작성
+	@Override
+	public void insertBraa(BraaVO braaVO) throws Exception {
+		braaVO.setUserPw(sha256(braaVO.getUserPw())); //sha256 공통으로 빼면 애 controller로 빼기
+		braaDAO.insert(braaVO);
+	}
+	
+	//온라인 문의글 수정
 	@Override
 	public void updateBraa(BraaVO braaVO) {
-		// TODO Auto-generated method stub
 		int num = braaDAO.update(braaVO);
 		logger.debug("num:"+num);
 		
 	}
-
+	
+	//온라인 문의글 삭제
+	@Override
+	public int deleteBraa(BraaVO braaVO) {
+		return braaDAO.delete(braaVO);
+	}
+	
+	////////////////////////////////////////////////////////
+	////     BraaConfirmPassWd 문의 게시판 조회 비밀번호 팝업              /// 
+	////////////////////////////////////////////////////////
+	//온라인 문의글 조회 체크 팝업
 	@Override
 	public Boolean confirmPasswd(Map<String, String> map) throws Exception {
-		// TODO Auto-generated method stub
 		String newPw = map.get("pw");
 		String savPw = braaDAO.selectPassWd(map.get("bordNum"));
-
 		return comparePw(sha256(newPw), savPw);
 	}
 	
@@ -86,7 +99,6 @@ public class BraaServiceImpl implements BraaService{
 		for(byte b : bytes){
 			builder.append(String.format("%02x", b));
 		}
-		
 		return builder.toString();
 	}
 	
@@ -97,13 +109,6 @@ public class BraaServiceImpl implements BraaService{
 		return false;
 	}
 
-	@Override
-	public int deleteBraa(BraaVO braaVO) {
-		// TODO Auto-generated method stub
-		return braaDAO.delete(braaVO);
-		
-	}
-
 	//지울예정
 	public void temp() throws Exception{
 		List<BraaVO> list = braaDAO.hexTemp();
@@ -111,12 +116,10 @@ public class BraaServiceImpl implements BraaService{
 		for(BraaVO val : list){
 			str = sha256(val.getUserPw());
 		}
-		
 	}
 
 	@Override
 	public BraaVO encrypBraa(BraaVO braaVO, String updMode, HttpSession session) {
-		// TODO Auto-generated method stub
 		String sessionChk = (String) session.getAttribute("name");
 		String email = "";
 		String tel = "";

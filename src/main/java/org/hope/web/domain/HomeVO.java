@@ -8,7 +8,7 @@ public class HomeVO {
 	private String mainComment;
 	private String subComment;
 	private String fileNo;
-	private String fileseq;
+	private String fileSeq;
 	private String filePath;
 	
 	
@@ -48,11 +48,11 @@ public class HomeVO {
 	public void setFileNo(String fileNo) {
 		this.fileNo = fileNo;
 	}
-	public String getFileseq() {
-		return fileseq;
+	public String getFileSeq() {
+		return fileSeq;
 	}
-	public void setFileseq(String fileseq) {
-		this.fileseq = fileseq;
+	public void setFileSeq(String fileSeq) {
+		this.fileSeq = fileSeq;
 	}
 	public String getFilePath() {
 		return filePath;

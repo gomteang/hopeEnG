@@ -13,17 +13,8 @@
 		<!-- <collection property="HomeFileVO" column="GL_NO" resultMap="HomeFileListResult" ></collection> -->
 	</resultMap>
 	
-	
+	<!-- 메인화면 상단 이미지 조회 -->
 	<select id="HomeMapper.Home1000_selectTop" resultMap="HomeSelectListResult">
-		<!-- SELECT GL_NO
-			  ,COMMENT 
-			  ,SUB_COMMENT
-              ,FIRST_FILE_PATH
-		 FROM GLTB
-		WHERE 1=1
-		  AND IMG_PSTN ='T'
-	 ORDER BY GL_NO		 -->
-	    <!-- AND GL_NO=#{gllyNo} -->
 	    SELECT PT.POST_NO
 			 , PT.MAIN_COMMENT 
 			 , PT.SUB_COMMENT
@@ -33,21 +24,13 @@
 		  FROM POSTTB PT
           LEFT OUTER JOIN FILETB FT
      		   ON CONCAT(PT.POST_DIST, LPAD(PT.POST_NO ,5,'0')) = FT.FILE_NO
- 		 WHERE PT.POST_DIST = 'GALL'
+ 		 WHERE PT.POST_DIST = 'GLLY'
  		   AND PT.IMG_PSTN = 'T'
  		 ORDER BY FILE_NO, FILE_SEQ
 	</select>
 	
+	<!-- 메인화면 하단 이미지 조회 -->
 	<select id="HomeMapper.Home1000_selectBottm" resultMap="HomeSelectListResult">
-		<!-- SELECT GL_NO
-			  ,COMMENT
-			  ,SUB_COMMENT
-              ,FIRST_FILE_PATH
-		 FROM GLTB
-		WHERE 1=1
-		  AND IMG_PSTN ='B'
-	 ORDER BY GL_NO		 -->
-	    <!-- AND GL_NO=#{gllyNo} -->
 	    SELECT PT.POST_NO
 			 , PT.MAIN_COMMENT 
 			 , PT.SUB_COMMENT
@@ -57,7 +40,7 @@
 		  FROM POSTTB PT
           LEFT OUTER JOIN FILETB FT
      		   ON CONCAT(PT.POST_DIST, LPAD(PT.POST_NO ,5,'0')) = FT.FILE_NO
- 		 WHERE PT.POST_DIST = 'GALL'
+ 		 WHERE PT.POST_DIST = 'GLLY'
  		   AND PT.IMG_PSTN = 'B'
  		 ORDER BY FILE_NO, FILE_SEQ
 	</select>

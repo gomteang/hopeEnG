@@ -26,21 +26,15 @@ public class HomeDAO {
 		this.sqlSession = sqlSession;
 	}
 	
+	//메인화면 상단 이미지 조회
 	public List<HomeVO> selectTop(Map<String, String> map) throws DataAccessException{ 
-		// TODO Auto-generated method stub
-		//System.out.println(map.toString());
 		List<HomeVO> tmp = sqlSession.selectList("HomeMapper.Home1000_selectTop", map);
-		//System.out.println(tmp.get(0).getHomeFileVO().toString());
 		return tmp;
 	}
 	
-	
+	//메인화면 하단 이미지 조회
 	public List<HomeVO> selectBottm(Map<String, String> map) throws DataAccessException{ 
-		// TODO Auto-generated method stub
-		//System.out.println(map.toString());
 		List<HomeVO> tmp = sqlSession.selectList("HomeMapper.Home1000_selectBottm", map);
-		
-		//System.out.println(tmp.get(0).getHomeFileVO().toString());
 		return tmp;
 	}
 	

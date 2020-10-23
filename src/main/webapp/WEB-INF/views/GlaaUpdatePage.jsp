@@ -12,7 +12,6 @@
 
 <%    
     String gllyNo = request.getParameter("gllyNo");
-	System.out.println("jsp page : "+ gllyNo);
 %>
 
 <c:set var="gllyNo" value="<%=gllyNo%>"/> <!-- 게시글 번호 -->
@@ -32,9 +31,7 @@
     
     /** 갤러리 - 상세 조회  */
     function getGlaaDetail(boardSeq){
-        alert("start")
         var gllyNo = <%=gllyNo%>
-        alert(gllyNo)
         if(gllyNo != ""){
             
             $.ajax({    
@@ -58,7 +55,6 @@
     
     /** 게시판 - 상세 조회  콜백 함수 */
     function getGlaaDetailCallback(obj){
-        alert(JSON.stringify(obj))
         var str = "";
         
         if(obj != null){                                
@@ -69,7 +65,7 @@
             $("#gllyNm").val(obj.gllyNm);
             $("#gllyCts").val(obj.gllyCts);
             $("#imgPstn").val(obj.imgPstn);
-            $("#comment").val(obj.mainComment);
+            $("#mainComment").val(obj.mainComment);
             $("#subComment").val(obj.subComment);
         } else {
             
@@ -167,7 +163,7 @@
                         </tr>
                         <tr>
                             <th>메인 문구<span class="t_red"></span></th>
-                            <td><textarea class="form-control" id="comment" name="comment" cols="30" rows="10" class="textarea01"></textarea></td>
+                            <td><textarea class="form-control" id="comment" name="mainComment" cols="30" rows="10" class="textarea01"></textarea></td>
                         </tr>
                         <tr>
                             <th>추가 문구<span class="t_red"></span></th>

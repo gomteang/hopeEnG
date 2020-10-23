@@ -20,23 +20,17 @@ public class HomeServiceImpl implements HomeService{
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 
+	//메인화면 상단 이미지 조회
 	@Override
 	public List<HomeVO> selectHomeTop(Map<String, String> map) {
-		// TODO Auto-generated method stub
 		return HomeDAO.selectTop(map);
 	}
+	
+	//메인화면 하단 이미지 조회
 	@Override
 	public List<HomeVO> selectHomeBottm(Map<String, String> map) {
-		// TODO Auto-generated method stub
 		return HomeDAO.selectBottm(map);
 	}
 
-
-
-	/*
-	 * @Override public void insertBoardFile(HomeFileVO HomeFileVO) {
-	 * HomeDAO.insertHomeFile(HomeFileVO); }
-	 */
-    
 
 }

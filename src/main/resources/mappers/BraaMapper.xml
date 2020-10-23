@@ -3,12 +3,12 @@
 
 <mapper namespace="BraaMapper">
 
-    <insert id="Braa1000_insert" parameterType="org.hope.web.domain.BraaVO">
-		INSERT INTO BORDTB(BORD_NM, BORD_CTS, BORD_RELEASE, USER_NM, USER_EMAIL, USER_PHONE, USER_PW, REGI_DATE, MODY_DATE)
-		VALUES(#{bordNm},#{bordCts},#{bordRelease},#{userNm},#{userEmail},#{userPhone},#{userPw}, SYSDATE(), SYSDATE())
-    </insert>
-    
-    <select id="BraaMapper.Braa1000_totalCnt" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+
+	<!--////////////////////////////////////////////////////////  
+	////               BraaList 문의 게시판 메인화면                                ////
+	////////////////////////////////////////////////////////-->
+	<!-- 온라인 문의글 등록 총 수 -->	
+	<select id="BraaMapper.Braa1000_totalCnt" parameterType="java.util.HashMap" resultType="java.lang.Integer">
 		SELECT count(*) AS cnt
 		  FROM BORDTB
 		 WHERE 1=1
@@ -23,95 +23,122 @@
 		   </if>
 		   AND BORD_STUS != 'D'
     </select>
-
-    <update id="BraaMapper.Braa1000_update" parameterType="org.hope.web.domain.BraaVO">
-    	UPDATE BORDTB
-    	 <set>
-    		 <if test="bordNm!=null and !bordNm.equals('')"> 
-    		 	BORD_NM = #{bordNm},
-    		 </if>
-    		 <if test="bordCts!=null and !bordCts.equals('')"> 
-    		 	BORD_CTS = #{bordCts},
-    		 </if>
-    		 <if test="userNm!=null and !userNm.equals('')"> 
-    		 	USER_NM = #{userNm},
-    		 </if>
-    		 <if test="userEmail!=null and !userEmail.equals('')"> 
-    		 	USER_EMAIL = #{userEmail},
-    		 </if>
-    		 <if test="userPhone!=null and !userPhone.equals('')"> 
-    		 	USER_PHONE = #{userPhone},
-    		 </if>
-    		 <if test="bordStus!=null and !bordStus.equals('')"> 
-    		 	BORD_STUS = #{bordStus},
-    		 </if>
-    		 MODY_DATE = SYSDATE()
-    	</set>
-    	WHERE BORD_NO = #{bordNo}
-    </update>
-    
-    <update id="BraaMapper.Braa1000_delete" parameterType="org.hope.web.domain.BraaVO">
-    	UPDATE BORDTB SET BORD_STUS = 'D' WHERE BORD_NO = #{bordNo}
-    </update>
-    
-    <select id="Braa1000_select" resultType="org.hope.web.domain.BraaVO" parameterType="java.util.HashMap">
-		SELECT count(*) over() totalCnt
-			  ,ROW_NUMBER() OVER () AS rowNm
-			  ,BORD_NO AS bordNo
-			  ,BORD_NM AS bordNm
-              ,BORD_STUS AS bordStus
-              ,BORD_CNT AS bordCnt
-              ,BORD_RELEASE AS bordRelease
-              ,USER_NM AS userNm
-              ,DATE_FORMAT(MODY_DATE, '%Y-%m-%d') AS modyDate
+	  
+	<!-- 온라인 문의글 메인 조회 -->    
+	<select id="Braa1000_select" resultType="org.hope.web.domain.BraaVO" parameterType="java.util.HashMap">
+		SELECT COUNT(*) OVER() totalCnt
+			 , ROW_NUMBER() OVER () AS rowNm
+			 , BORD_NO AS bordNo
+			 , BORD_NM AS bordNm
+             , BORD_STUS AS bordStus
+             , BORD_CNT AS bordCnt
+             , BORD_RELEASE AS bordRelease
+             , USER_NM AS userNm
+             , DATE_FORMAT(MODY_DATE, '%Y-%m-%d') AS modyDate
 		 FROM BORDTB
 		WHERE 1=1 
- 			<if test="bordNm!=null and !bordNm.equals('')">
-			   AND BORD_NM LIKE CONCAT('%',#{bordNm},'%')
-			</if>
-			<if test="userNm!=null and !userNm.equals('')">
-		    	AND USER_NM LIKE CONCAT('%',#{userNm},'%')
-		    </if>
-		    <if test="bordNo!=null and !bordNo.equals('')">
-		   		AND BORD_NO = #{bordNo}
-		    </if>
-		    AND BORD_STUS != 'D'
-		 ORDER BY REGI_DATE DESC
-		 LIMIT #{start}, ${cntPerPage}
+ 		<if test="bordNm!=null and !bordNm.equals('')">
+		  AND BORD_NM LIKE CONCAT('%',#{bordNm},'%')
+		</if>
+		<if test="userNm!=null and !userNm.equals('')">
+		  AND USER_NM LIKE CONCAT('%',#{userNm},'%')
+		</if>
+		<if test="bordNo!=null and !bordNo.equals('')">
+		  AND BORD_NO = #{bordNo}
+		</if>
+		  AND BORD_STUS != 'D'
+		ORDER BY REGI_DATE DESC
+		LIMIT #{start}, ${cntPerPage}
 	</select>
-	
+
+	<!--////////////////////////////////////////////////////////  
+	////     BraaPage 문의 게시판 상세화면(조회, 작성, 수정, 삭제)      ////
+	////////////////////////////////////////////////////////-->
+	<!-- 온라인 문의글 작성  -->
+    <insert id="Braa1000_insert" parameterType="org.hope.web.domain.BraaVO">
+		INSERT INTO BORDTB
+		     ( BORD_NM
+		     , BORD_CTS
+		     , BORD_RELEASE
+		     , USER_NM
+		     , USER_EMAIL
+		     , USER_PHONE
+		     , USER_PW
+		     , REGI_DATE
+		     , MODY_DATE)
+		VALUES 
+			 ( #{bordNm}
+			 , #{bordCts}
+			 , #{bordRelease}
+			 , #{userNm}
+			 , #{userEmail}
+			 , #{userPhone}
+			 , #{userPw}
+			 , SYSDATE()
+			 , SYSDATE())
+    </insert>
+    
+	<!-- 온라인 문의글 수정  -->
+    <update id="BraaMapper.Braa1000_update" parameterType="org.hope.web.domain.BraaVO">
+    	UPDATE BORDTB
+    	   SET BORD_NM    = #{bordNm}
+    	     , BORD_CTS   = #{bordCts}
+    	     , USER_NM    = #{userNm}
+    	     , USER_EMAIL = #{userEmail}
+    	     , USER_PHONE = #{userPhone}
+    	     , BORD_STUS  = #{bordStus}
+    	     , MODY_DATE  = SYSDATE()
+    	WHERE BORD_NO     = #{bordNo}
+    </update>
+    
+    <!-- 온라인 문의글 삭제 -->
+    <update id="BraaMapper.Braa1000_delete" parameterType="org.hope.web.domain.BraaVO">
+    	UPDATE BORDTB 
+    	   SET BORD_STUS = 'D' 
+    	 WHERE BORD_NO   = #{bordNo}
+    </update>
+    
+	<!-- 온라인 문의글 상세 조회 -->
 	<select id="BraaMapper.Braa1000_selectDetail" resultType="org.hope.web.domain.BraaVO" parameterType="java.lang.String">
 		SELECT BORD_NO AS bordNo
-			  ,BORD_NM AS bordNm
-              ,BORD_CTS AS bordCts
-              ,BORD_STUS AS bordStus
-              ,BORD_RELEASE AS bordRelease
-              ,USER_NM AS userNm
-              ,USER_EMAIL AS userEmail
-              ,USER_PHONE AS userPhone
-              ,DATE_FORMAT(REGI_DATE, '%Y-%m-%d') AS regiDate
-              ,DATE_FORMAT(MODY_DATE, '%Y-%m-%d') AS modyDate
+			 , BORD_NM AS bordNm
+             , BORD_CTS AS bordCts
+             , BORD_STUS AS bordStus
+             , BORD_RELEASE AS bordRelease
+             , USER_NM AS userNm
+             , USER_EMAIL AS userEmail
+             , USER_PHONE AS userPhone
+             , DATE_FORMAT(REGI_DATE, '%Y-%m-%d') AS regiDate
+             , DATE_FORMAT(MODY_DATE, '%Y-%m-%d') AS modyDate
 		 FROM BORDTB
 	    WHERE BORD_NO = #{bordNum}
 	</select>
 	
-	<select id="BraaMapper.Braa1000_selectPassWd" resultType="java.lang.String" parameterType="java.lang.String">
-	    SELECT USER_PW AS userPw
-		 FROM BORDTB
-	    WHERE BORD_NO = #{bordNum}
-	</select>
-	
+	<!-- 온라인 문의글 조회 수 증가 -->
 	<update id="BraaMapper.Braa1000_updateIncreViews" parameterType="java.lang.String">
 		UPDATE BORDTB
 		   SET BORD_CNT = (SELECT BORD_CNT+1
 		   					 FROM BORDTB
 		   					WHERE BORD_NO = #{bordNum})
-		 WHERE BORD_NO = #{bordNum}
+		 WHERE BORD_NO  = #{bordNum}
 	</update>
+	
+	
+	<!--////////////////////////////////////////////////////////  
+	////       BraaConfirmPassWd 문의 게시판 조회 비밀번호 팝업                ////
+	////////////////////////////////////////////////////////-->
+	<!-- 온라인 문의글 비밀번호 체크 -->
+	<select id="BraaMapper.Braa1000_selectPassWd" resultType="java.lang.String" parameterType="java.lang.String">
+	    SELECT USER_PW AS userPw
+		  FROM BORDTB
+	     WHERE BORD_NO = #{bordNum}
+	</select>
+	
+	
 	
 	<select id="BraaMapper.Braa1000_temp" resultType="org.hope.web.domain.BraaVO" parameterType="org.hope.web.domain.BraaVO">
 	    SELECT BORD_NO as bordNum
-	          ,USER_PW as userPw 
+	         , USER_PW as userPw 
 	      FROM BORDTB 
 	     WHERE BORD_RELEASE = 'N'
 	</select>
