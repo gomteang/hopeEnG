@@ -128,8 +128,7 @@
   		     , #{mainComment}
   		     , #{subComment}
   		     , SYSDATE()
-  		     , SYSDATE()
-  		     )
+  		     , SYSDATE())
     </insert>
     
     <!-- 갤러리 업로드 파일등록 -->

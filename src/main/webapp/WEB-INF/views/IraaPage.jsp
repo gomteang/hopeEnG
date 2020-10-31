@@ -12,15 +12,16 @@
 <script>
 	$(document).ready(function(){ //메인에서 클릭해서 들어오면 서버에서 무조건 5개 가지고 옴
 		$("#btn_infoCompany").click(function(){
-			$("#infoCEO").hide();
 			$("#infoCompany").show();
-			
+			$("#infoCEO").hide();
 		});
 	
 		$("#btn_infoCEO").click(function(){
 			$("#infoCEO").show();
 			$("#infoCompany").hide();
 		});
+		
+		
 	})
 
 	
