@@ -16,6 +16,8 @@
 		<result property="fileNo"        column="FILE_NO"></result>
 		<result property="fileSeq"		 column="FILE_SEQ"></result>
 		<result property="filePath"      column="FILE_PATH"></result>
+		<result property="fileType"      column="FILE_TYPE"></result>
+		<result property="fileNmKey"     column="FILE_NM_KEY"></result>
 		<!-- <collection property="glaaFileVO" column="GL_NO" resultMap="glaaFileListResult" ></collection> -->
 		<collection property="glaaFileVO" column="GLLY_NO" javaType="java.util.ArrayList" ofType="org.hope.web.domain.GlaaFileVO" select="GlaaMapper.Glaa1000_selectFileList"/>
 	</resultMap>
@@ -28,6 +30,7 @@
 		<result property="fileSize"    column="FILE_SIZE"></result>
 		<result property="regiDate"    column="REGI_DATE"></result>
 		<result property="fileNameKey" column="FILE_NM_KEY"></result>
+		<result property="fileType" column="FILE_TYPE"></result>
 	</resultMap>
 	
 	
@@ -59,14 +62,17 @@
 	   		 , DATE_FORMAT(PT.REGI_DATE, '%Y-%m-%d' ) AS REGI_DATE 
 	   		 , DATE_FORMAT(PT.MODY_DATE, '%Y-%m-%d') as MODY_DATE
 	   		 , PT.MODY_DATE AS SORT_MODY_DATE
+	   		 , PT.FILE_TYPE
 	   		 , FT.FILE_NO 
 	   		 , FT.FILE_SEQ 
 	   		 , FT.FILE_PATH 
+	   		 , FT.FILE_NM_KEY
 	      FROM POSTTB PT
 	      LEFT OUTER JOIN FILETB FT
 	        ON CONCAT(PT.POST_DIST, LPAD(PT.POST_NO ,5,'0')) = FT.FILE_NO
 	     WHERE 1=1
 	       AND PT.POST_DIST = 'GLLY'
+	       AND PT.FILE_TYPE = #{fileType}
 	       AND FT.FILE_SEQ  = '1'
 		 <if test="gllyNm!=null and !gllyNm.equals('')">
 		   AND PT.POST_NM LIKE CONCAT('%',#{gllyNm},'%')
@@ -83,6 +89,7 @@
 	<!-- 갤러리 메인화면 첨부파일 조회 -->
 	<select id="GlaaMapper.Glaa1000_selectFileList" resultMap="glaaFileListResult" >
 		SELECT PT.POST_NO AS GLLY_NO
+			 , PT.FILE_TYPE
 			 , FT.FILE_NO
 			 , FT.FILE_SEQ  
 			 , FT.FILE_NM_KEY
@@ -117,6 +124,7 @@
   		     , IMG_PSTN
   		     , MAIN_COMMENT
   		     , SUB_COMMENT
+  		     , FILE_TYPE
   		     , REGI_DATE
   		     , MODY_DATE)
   		VALUES
@@ -127,6 +135,7 @@
   		     , #{imgPstn}
   		     , #{mainComment}
   		     , #{subComment}
+  		     , #{fileType}
   		     , SYSDATE()
   		     , SYSDATE())
     </insert>
@@ -162,12 +171,14 @@
 	   		 , PT.IMG_PSTN 
 	   		 , PT.MAIN_COMMENT 
 	   		 , PT.SUB_COMMENT 
+	   		 , PT.FILE_TYPE
 	   		 , DATE_FORMAT(PT.REGI_DATE, '%Y-%m-%d' ) AS REGI_DATE 
 	   		 , DATE_FORMAT(PT.MODY_DATE, '%Y-%m-%d') as MODY_DATE
 	   		 , PT.MODY_DATE AS SORT_MODY_DATE
 	   		 , FT.FILE_NO 
 	   		 , FT.FILE_SEQ 
 	   		 , FT.FILE_PATH 
+	   		 , FT.FILE_NM_KEY
 	      FROM POSTTB PT
 	      LEFT OUTER JOIN FILETB FT
 	        ON CONCAT(PT.POST_DIST, LPAD(PT.POST_NO ,5,'0')) = FT.FILE_NO

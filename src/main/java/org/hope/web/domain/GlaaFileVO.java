@@ -7,6 +7,7 @@ public class GlaaFileVO {
 	private String fileNameKey;
 	private String filePath;
 	private String fileSize;
+	private String fileType;
 	private String regiDate;
 	@Override
 	public String toString() {
@@ -55,6 +56,12 @@ public class GlaaFileVO {
 	}
 	public void setFileSize(String fileSize) {
 		this.fileSize = fileSize;
+	}
+	public String getFileType() {
+		return fileType;
+	}
+	public void setFileType(String fileType) {
+		this.fileType = fileType;
 	}
 	
 	

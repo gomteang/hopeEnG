@@ -28,6 +28,8 @@ function pstnInit(gllyDist){
 	var pstnValues = new Array();
 	pstnValues[0] = new Array("N", "T", "B");
 	pstnValues[1] = new Array("N", "V");
+
+	var fileCheck = document.getElementById("files[0]").value;
 	
 	var pstnOption;
 	var pstnValue;
@@ -62,7 +64,6 @@ $(document).ready(function(){
 window.onload = function(){
 	pstnInit("I");
 }
-
     
 /** 갤러리 - 목록 페이지 이동 */
 function goGlaaList(){                
@@ -76,7 +77,7 @@ function insertGlaa(){
 	
     var gllySubject = $("#gllyNm").val();
     var gllyContent = $("#gllyCts").val();
-    var gllyDist    = $("#gllyDist").val();
+    var fileType    = $("#fileType").val();
     
     if (gllySubject == ""){            
         alert("제목을 입력해주세요.");
@@ -99,10 +100,10 @@ function insertGlaa(){
     var lastDot = fileCheck.lastIndexOf('.');
     var fileExt = fileCheck.substring(lastDot+1, fileCheck.length).toLowerCase();
     
-    if(gllyDist == "I" && (fileExt != "img" && fileExt != "jpg" && fileExt != "jpeg" && fileExt != "png" && fileExt != "gif")){
+    if(fileType == "I" && (fileExt != "img" && fileExt != "jpg" && fileExt != "jpeg" && fileExt != "png" && fileExt != "gif")){
     	alert("등록할 수 없는 파일 입니다.");
     	return;
-    }else if(gllyDist == "V" && (fileExt != "avi" && fileExt != "mp4" && fileExt != "wmv" && fileExt != "mkv")){
+    }else if(fileType == "V" && (fileExt != "avi" && fileExt != "mp4" && fileExt != "wmv" && fileExt != "mkv")){
     	alert("등록할 수 없는 파일 입니다.");
     	return;
     }
@@ -149,18 +150,23 @@ function insertGlaaCallback(obj){
 function checkFile(el){
 
 	var file = el.files;
-
 	var sum=0;
 	for(i=0; i < file.length; i++){
 		sum += file[i].size;
 	}
-	//alert(sum);
-	if(sum > 3 * 1024 *1024){
+	var fileType = $("#fileType option:selected").val();
+	alert(fileType);
+	if(fileType == "I" && sum > 3 * 1024 *1024){
 		alert('3MB 이상 첨부할 수 없습니다.\n\n' + '현재파일 용량 : ' + (Math.round(sum / 1024 / 1024 * 100) / 100) + 'MB');
+		el.outerHTML = el.outerHTML;
+		return false;
 	}
-	else return;
-
-	el.outerHTML = el.outerHTML;
+	else if(fileType == "V"	){
+		el.outerHTML = el.outerHTML;
+		return false;
+	}
+	else return; 
+	
 }
 
 </script>
@@ -182,7 +188,7 @@ function checkFile(el){
                    		<tr>
                    			<th>파일 종류</th>
                    			<td>
-                   				<select id="gllyDist" class="form-control-small" name="gllyDist" onchange="pstnInit(this)">
+                   				<select id="fileType" class="form-control-small" name="fileType" onchange="pstnInit(this)">
 									<option value="I">사진</option>
                    					<option value="V">영상</option>
                    				</select>
@@ -212,7 +218,8 @@ function checkFile(el){
                         </tr>
                         <tr>
                             <th scope="row">첨부파일</th>
-                            <td colspan="1"><input multiple="multiple" type="file" accept="image/*" id="files[0]" onchange="checkFile(this)" name="files[0]" value="">
+                            <td colspan="1">
+                            	<input multiple="multiple" type="file"  id="files[0]" onchange="checkFile(this)" name="files[0]" value="">
                             </td>
                             <td colspan="2"><p id="extText"></p></td>
                         </tr>

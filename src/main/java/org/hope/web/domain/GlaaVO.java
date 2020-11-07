@@ -11,6 +11,7 @@ public class GlaaVO {
 	private String imgPstn;
 	private String mainComment;
 	private String subComment;
+	private String fileType;
 	private String regiDate;
 	private String modyDate;
 	private List<MultipartFile> files;
@@ -18,6 +19,7 @@ public class GlaaVO {
 	private String fileNo;
 	private int fileSeq;
 	private String filePath;
+	private String fileNmKey;
 	
 	public String getImgPstn() {
 		return imgPstn;
@@ -49,22 +51,30 @@ public class GlaaVO {
 	public void setFiles(List<MultipartFile> files) {
 		this.files = files;
 	}
-	public int getgllyNo() {
+	public int getGllyNo() {
 		return gllyNo;
 	}
-	public void setgllyNo(int gllyNo) {
+	public void setGllyNo(int gllyNo) {
 		this.gllyNo = gllyNo;
 	}
-	public String getgllyNm() {
+	public String getGllyNm() {
 		return gllyNm;
 	}
-	public void setgllyNm(String gllyNm) {
+	public void setGllyNm(String gllyNm) {
 		this.gllyNm = gllyNm;
 	}
-	public String getgllyCts() {
+	
+	public String getFileType() {
+		return fileType;
+	}
+	public void setFileType(String fileType) {
+		this.fileType = fileType;
+	}
+	
+	public String getGllyCts() {
 		return gllyCts;
 	}
-	public void setgllyCts(String gllyCts) {
+	public void setGllyCts(String gllyCts) {
 		this.gllyCts = gllyCts;
 	}
 
@@ -98,16 +108,12 @@ public class GlaaVO {
 	public void setFilePath(String filePath) {
 		this.filePath = filePath;
 	}
-//	@Override
-//	public String toString() {
-//		return "GlaaVO [gllyNo=" + gllyNo + ", gllyNm=" + gllyNm + ", gllyCts=" + gllyCts + ", imgPstn=" + imgPstn
-//				+ ", comment=" + comment + ", subComment=" + subComment + ", regiDate=" + regiDate + ", modyDate="
-//				+ modyDate + ", files=" + files + ", glaaFileVO=" + glaaFileVO + ", firstFilePath=" + firstFilePath
-//				+ "]";
-//	}
-
-	
-
+	public String getFileNmKey() {
+		return fileNmKey;
+	}
+	public void setFileNmKey(String fileNmKey) {
+		this.fileNmKey = fileNmKey;
+	}
 
 
 	

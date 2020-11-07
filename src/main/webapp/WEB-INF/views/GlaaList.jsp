@@ -20,11 +20,21 @@
 	var cntPerPage = 6;
 	var searchArr = new Object();
 	
-	$(document).ready(function(){ //메인에서 클릭해서 들어오면 서버에서 무조건 6개 가지고 옴
+	$(document).ready(function(){ 
 		searchArr["pageNum"] = pageNum;
 		searchArr["cntPerPage"] = cntPerPage;
-		
+		searchArr["fileType"] = "I";
 		ajaxComm("/glaa/Glaa1000_select.do",searchArr,glaaSelectCallback);
+		
+		$("#btn_gllyImg").click(function(){
+			searchArr["fileType"] = "I";
+			ajaxComm("/glaa/Glaa1000_select.do",searchArr,glaaSelectCallback);
+		});
+	
+		$("#btn_gllyVideo").click(function(){
+			searchArr["fileType"] = "V";
+			ajaxComm("/glaa/Glaa1000_select.do",searchArr,glaaSelectCallback);
+		});
 		
 		$("#searchBtn").click(function(){
 			var url = "/glaa/Glaa1000_select.do";
@@ -57,11 +67,17 @@
 		var click = "";
 		
 		$.each(result.glaaList,function(index,item){
+			var src = "";
+			if(item.fileType == "I"){
+				src = "<img src=\"<spring:url value='/glly/"+item.fileNmKey+"'/>\"/>";
+			}else if (item.fileType == "V"){
+				src = "<video width=\"100%\" height=\"100%\" src=\"<spring:url value='/glly/"+item.fileNmKey+"'/>\"/>";
+			}
 			glaaAppend 
 			   		+= "<li class='gallyLi'>"
 					+"<a href='javascript:gllyDetail(\""+item.gllyNo+"\");'>"
 					+"<div class='minidimm'>"
-					+ "<img src=\"<spring:url value='/glly/"+item.filePath+"'/>\"/>"
+					+ src
 					+"</div>"
 					+"<p class='txtWrap'>"
 					+"<span class='tit'>"+item.gllyNm+"</span>"
@@ -141,6 +157,10 @@
 
 <div class="inner">
 <h2 class="" > 갤러리</h2>
+
+	<button id="btn_gllyImg" type="button" class="">사진</button>
+	<button id="btn_gllyVideo" type="button" class="">영상</button>
+
 	<div style="margin-bottom:15px;">
 		<select id="select" class="form-control" style="width:100px;float:left;">
 			<option value="glNm">제목</option>
@@ -163,7 +183,6 @@
 		</section>
 	</div>
 	<div id="paging" class="paging">
-
 	</div>
 	<div class="clear-space"></div>
 	

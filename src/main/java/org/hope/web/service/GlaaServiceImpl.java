@@ -67,7 +67,7 @@ public class GlaaServiceImpl implements GlaaService{
 		glaaVO.setFilePath(glaaFileList.get(0).getFileNameKey());
 		
 		int gllyNo = glaaDAO.selectGllyNo(glaaVO);
-		glaaVO.setgllyNo(gllyNo);
+		glaaVO.setGllyNo(gllyNo);
 		glaaDAO.insert(glaaVO);
 		
 		int i = 1;
@@ -87,7 +87,7 @@ public class GlaaServiceImpl implements GlaaService{
 		List<GlaaFileVO> glaaFileList = new ArrayList<GlaaFileVO>();
 		GlaaFileVO glaaFileVO = new GlaaFileVO();
 		System.out.println("This is getGlaaFileInfo");
-		int gllyNo = glaaVO.getgllyNo();
+		int gllyNo = glaaVO.getGllyNo();
 		String fileName = null;
 		String fileNameKey = null;
 		String rootPath = glaaVO.getFilePath();
